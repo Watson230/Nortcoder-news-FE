@@ -4,10 +4,16 @@ import BlogFeed from './components/blogFeed'
 import Article from './components/article'
 import Topics from  './components/topicsFeed'
 import NavBar  from './components/navbar'
+import comments from './components/comments'
+import User from './components/userProfile'
 
 import './App.css';
 
 class App extends Component {
+
+  state={
+    pageNum:0
+  }
   render() {
     return (
       <div>
@@ -30,9 +36,11 @@ class App extends Component {
             <Route exact path="/" component={HomeFeed}/> 
             <Route path="/article/:postId" component={Article} />
             <Route exact path="/articles/page/:pageNumber" component={Feed} />
-            
-            <Route path="/topics" component={Topics} />
-           
+            <Route path="/articles/:article_id/comments" component={comments}/>
+            <Route path="/users/:username" component={User}/>
+            <Route path="/article/:article_id" component={Article}/>
+          
+            <Route path="/topics" component={Topics} />       
           </Switch>
         </BrowserRouter>
       </div>
@@ -54,16 +62,17 @@ const HomeFeed = (props) => {
 }
 
 const Feed = (props) => {
-  let  pageNumber =0
+ let pageNumber
   if(props.match.params.pageNumber>0){
   pageNumber = props.match.params.pageNumber
-  }
+  } else pageNumber =0
 
   return (
     <div>
     <NavBar/>
       <h2> {`Page ${pageNumber}`}</h2>
       <div>
+        <button><Link to={`/articles/page/${Number(pageNumber)-1 }`}>Prev Page</Link></button>   <button><Link to={`/articles/page/${Number(pageNumber)+1 }`}> Next Page</Link></button>
       <BlogFeed endPoint ={'articles'} pageNum={pageNumber} />
       </div>
     </div>

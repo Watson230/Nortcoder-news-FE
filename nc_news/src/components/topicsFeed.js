@@ -11,6 +11,7 @@ class TopicFeed extends Component {
 
 
     componentWillMount() {
+        
         fetch(`https://northcoders-sprints-api.now.sh/api/news/topics`)
             .then(res => {
 
@@ -32,10 +33,12 @@ class TopicFeed extends Component {
     }
 
     topicChangeHandler=(slug)=>{
+  
         this.setState({
             currentTopic: slug
 
         })
+        
 
     }
 
@@ -59,7 +62,7 @@ class TopicFeed extends Component {
                                     
                             ><a>{topic.name}</a></li>
                         })}
-                        {console.log(this.state)}
+                      
 
                     </ul>
 

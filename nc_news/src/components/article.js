@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import Comments from './comments'
 
 class Article extends Component {
 
     state = {
-        article: {
-            title: ''
-        }
+
+        article: {}
+
     }
 
     componentDidMount() {
@@ -14,55 +16,53 @@ class Article extends Component {
         fetch(`https://northcoders-sprints-api.now.sh/api/news/articles/${this.props.match.params.postId}`)
             .then(res => {
                 console.log(res)
-                if(res.status ===  404 ){
-                    throw new Error('Content does not exist')
-                }
+                // if(res.status ===  404 ){
+                //     throw new Error('Content does not exist')
+                // }
                 return res.json();
             })
             .then(body => {
 
                 this.setState({
 
-                    article: body.post
+                    article: body.article
 
                 })
             })
             .catch(err => {
-                
+
                 console.log(err)
                 this.props.history.push('/404')
-                
+
             })
     }
-    
+
     render() {
-        console.log(this.props)
+            console.log(this.state)
 
         return (
-            <div>        
-                <h2>{this.props.title}</h2>
-                    
+            <div>
+
+                <h1 class="title">{this.state.article.title}</h1>
+                <h2 class="subtitle"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
+                <p>{this.state.article.body}</p>
+
                 <ul>
-                   
-                    <li><a>{this.props.article.created_by}</a></li>
-                    <li>{this.props.article.created_at}</li>
-                </ul>
+                    <li>{`Created_By: ${this.state.article.created_by}`}</li>
+                        <li>{this.state.article.created_at}</li>
+                            
+                        </ul>
 
-                <div>
-                    <p>{this.props.article.body}</p>
-                </div>
+                      
+                
 
-                <button onClick={(event)=>{
-                    event.preventDefault()
-                    window.location ='/'
-
-                }}>Home</button>
+             
             </div>
-        )
-
-    }
-
-
-}
-
+                )
+        
+            }
+        
+        
+        }
+        
 export default Article
