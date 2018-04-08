@@ -104,7 +104,7 @@ class BlogFeed extends Component {
     render() {
         return (
             <div >
-                <div style={{ "width": "1000px" }}>
+                <div class="container" style={{ "width": "1000px" }}>
                 
 
                     {this.state.blogPosts.sort((a,b)=>{

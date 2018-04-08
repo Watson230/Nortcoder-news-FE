@@ -49,23 +49,18 @@ class Article extends Component {
 
             <div>
 
-                {/* <h1 class="title">{this.state.article.title}</h1>
-                <h2 class="subtitle"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
-                <p>{this.state.article.body}</p> */}
-                <div class="card">
+                <div class="card" style={{"margin-bottom":"20px"}}>
                 <header class="card-header">
+                <div>
+                <div>
                     <p className="card-header-title" className="title is-1">
                         {this.state.article.title}
                     </p>
-                   
-                   
-                    <a href="#" class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                 
-                    <h2 class="subtitle"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
+                    </div>
+                    <div>
+                    <h2 class="subtitle is-3"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
+                    </div>
+                    </div>
                 </header>
                 <div class="card-content">
                     <div class="content">

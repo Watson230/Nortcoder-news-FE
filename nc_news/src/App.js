@@ -17,7 +17,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div >
         <section class="hero is-danger">
           <div class="hero-body">
             <div class="container">
@@ -30,9 +30,11 @@ class App extends Component {
             </div>
           </div>
         </section>
+    
 
     
         <BrowserRouter>
+       
           <Switch>
             <Route exact path="/" component={HomeFeed}/> 
             <Route path="/article/:postId" component={Article} />
@@ -55,7 +57,11 @@ const HomeFeed = (props) => {
   return (
     <div>
     <NavBar/>
-      <h2> latest From NC News</h2>
+    <div style={{"margin-bottom":"50px"}}class="container">
+                    <div class="notification" style={{"text-aline":"center"}}>
+                    <p class="title is-3 ">Most Popular On NorthCoder News</p>
+                        </div>
+                </div>
       <div>
       <BlogFeed endPoint ={'articles'} pageNum={0} />
       </div>
@@ -72,11 +78,30 @@ const Feed = (props) => {
   return (
     <div>
     <NavBar/>
-      <h2> {`Page ${pageNumber}`}</h2>
+      <div style={{"text-align": "center"}}>
+      <div class="container"  style={{"width":"1000px" ,"text-align": "center","margin-bottom":"20px"}}>
+        <button class="button is-medium" style={{"margin-right":"20px"}} ><Link to={`/articles/page/${Number(pageNumber)-1 }`}>Prev Page</Link></button> 
+       
+         <span class="title is-4"> {`Page ${parseInt(pageNumber)+1}`}</span>
+        
+          <button  class="button is-medium" style={{"margin-left":"20px"}} ><Link to={`/articles/page/${Number(pageNumber)+1 }`}> Next Page</Link></button>  
+      </div>
+      </div>
       <div>
-        <button><Link to={`/articles/page/${Number(pageNumber)-1 }`}>Prev Page</Link></button>   <button><Link to={`/articles/page/${Number(pageNumber)+1 }`}> Next Page</Link></button>
       <BlogFeed endPoint ={'articles'} pageNum={pageNumber} />
       </div>
+
+      <div style={{"text-align": "center", "margin-bottom":"20px", "margin-top":"20px"}}>
+      <div class="container"  style={{"width":"1000px" ,"text-align": "center"}}>
+        <button class="button is-medium" style={{"margin-right":"20px"}} ><Link to={`/articles/page/${Number(pageNumber)-1 }`}>Prev Page</Link></button> 
+       
+         <span class="title is-4"> {`Page ${parseInt(pageNumber)+1}`}</span>
+        
+          <button  class="button is-medium" style={{"margin-left":"20px"}} ><Link to={`/articles/page/${Number(pageNumber)+1 }`}> Next Page</Link></button>  
+      </div>
+      </div>
+    
+   
     </div>
   )
 }

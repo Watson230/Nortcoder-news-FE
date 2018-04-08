@@ -105,7 +105,7 @@ class BlogPost extends Component {
                             <div>
                                
                                 <div>
-                                <button style={{"width":"100px", "height":"50px"}}><Link to={`/article/${this.props.postId}`}>Read More</Link></button>
+                                <button class="button is-medium" ><Link to={`/article/${this.props.postId}`}>Read More</Link></button>
                                 
                                 </div>
                             </div>
