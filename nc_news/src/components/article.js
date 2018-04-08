@@ -6,11 +6,12 @@ class Article extends Component {
 
     state = {
 
-        article: {}
+        article: {},
+
 
     }
 
-    componentDidMount() {
+    componentWillMount() {
 
         console.log(this.props.match.params)
         fetch(`https://northcoders-sprints-api.now.sh/api/news/articles/${this.props.match.params.postId}`)
@@ -35,34 +36,72 @@ class Article extends Component {
                 this.props.history.push('/404')
 
             })
+
+
     }
 
+
+
     render() {
-            console.log(this.state)
+
 
         return (
+
             <div>
 
-                <h1 class="title">{this.state.article.title}</h1>
+                {/* <h1 class="title">{this.state.article.title}</h1>
                 <h2 class="subtitle"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
-                <p>{this.state.article.body}</p>
+                <p>{this.state.article.body}</p> */}
+                <div class="card">
+                <header class="card-header">
+                    <p className="card-header-title" className="title is-1">
+                        {this.state.article.title}
+                    </p>
+                   
+                   
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                 
+                    <h2 class="subtitle"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        {this.state.article.body}
 
-                <ul>
-                    <li>{`Created_By: ${this.state.article.created_by}`}</li>
-                        <li>{this.state.article.created_at}</li>
-                            
+                        <br />
+                        <ul>
+                            <li><Link to={`/users/${this.state.article.created_by}`}>{`Created_By: ${this.state.article.created_by ? this.state.article.created_by : 'loading...'}`}</Link></li>
+
+                            <li>{`Time: ${this.state.article.created_at ? this.state.article.created_at.split('T')[1].split('.')[0] : 'loading....'}`}</li>
+                            <li>{`Date: ${this.state.article.created_at ? this.state.article.created_at.split('T')[0] : 'loading....'}`}</li>
+
                         </ul>
 
-                      
-                
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <Link to={`/users/${this.state.article.created_by}`} class="card-footer-item">{`${this.state.article.created_by}'s profile`}</Link>
 
-             
+                </footer>
+
+                    </div>
+
+
+                <Comments postId={this.props.match.params.postId} />
+
+
+
+
+
             </div>
-                )
-        
-            }
-        
-        
-        }
-        
+        )
+
+    }
+
+
+}
+
 export default Article

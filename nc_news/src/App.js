@@ -5,7 +5,8 @@ import Article from './components/article'
 import Topics from  './components/topicsFeed'
 import NavBar  from './components/navbar'
 import comments from './components/comments'
-import User from './components/userProfile'
+import UserProfile from './components/userProfile'
+import Users from './components/users'
 
 import './App.css';
 
@@ -37,8 +38,9 @@ class App extends Component {
             <Route path="/article/:postId" component={Article} />
             <Route exact path="/articles/page/:pageNumber" component={Feed} />
             <Route path="/articles/:article_id/comments" component={comments}/>
-            <Route path="/users/:username" component={User}/>
+            <Route path="/users/:username" component={UserProfile}/>
             <Route path="/article/:article_id" component={Article}/>
+            <Route path="/users" component={Users}/>
           
             <Route path="/topics" component={Topics} />       
           </Switch>

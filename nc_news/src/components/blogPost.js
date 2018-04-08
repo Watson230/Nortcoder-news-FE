@@ -99,12 +99,24 @@ class BlogPost extends Component {
                                 </div>
                             </div>
                         </div>
+                       
+
+                         <div class="level-item has-text-centered">
+                            <div>
+                               
+                                <div>
+                                <button style={{"width":"100px", "height":"50px"}}><Link to={`/article/${this.props.postId}`}>Read More</Link></button>
+                                
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading">Comments</p>
                                 <div>
                                 <p class="title">{this.state.comments}</p>
-                                <button><Link to={`/articles/${this.props.postId}/comments`}>see Comments</Link></button>
+                                
                                 </div>
                             </div>
                         </div>

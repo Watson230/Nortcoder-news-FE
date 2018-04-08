@@ -8,7 +8,7 @@ const NavBar = (props) =>{
         <li class="is-active"><NavLink to={'/'}>Latest</NavLink></li>
         <li><NavLink to={'/topics'}>Topics</NavLink></li>
         <li><NavLink to={'/articles/page/0'}>Articles</NavLink></li>
-        <li><a>Users</a></li>
+        <li><NavLink to={'/users'}>Users</NavLink></li>
       </ul>
     </div>
     )

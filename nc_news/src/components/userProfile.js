@@ -33,15 +33,15 @@ class User extends Component {
 
 
     render() {
-        console.log(this.props)
+        console.log(this.state)
         return (
             <div>
-                <h1>user profile</h1>
+                <h1 className ="title is-2" >User Profile</h1>
 
                 {
                     <ul>
-                        <li>{this.state.user.username}</li>
-                        <li>{this.state.user.name}</li>
+                        <li>{`UserName: ${this.state.user.username}`}</li>
+                        <li>{` Name: ${this.state.user.name}`}</li>
                         <li><img src ={`${this.state.user.avatar_url}`}/></li>
                        
                         </ul>
