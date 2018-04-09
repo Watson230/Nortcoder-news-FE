@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import Comments from './comments'
+import NavBar from './navbar'
 
 class Article extends Component {
 
@@ -48,6 +49,16 @@ class Article extends Component {
         return (
 
             <div>
+                    <NavBar/>
+
+                    <div className ="article NavButtons" style={{ "text-align": "center" }}>
+                        <div class="container" style={{ "width": "1000px", "text-align": "center" ,"margin-bottom":"20px"}}>
+                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Article</button>
+
+
+                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Article</button>
+                        </div>
+                    </div>
 
                 <div class="card" style={{"margin-bottom":"20px"}}>
                 <header class="card-header">

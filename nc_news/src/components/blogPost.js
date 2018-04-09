@@ -79,8 +79,8 @@ class BlogPost extends Component {
                         </p>
                         <ul>
                             <li>{`Created_By: ${this.props.author}`}</li>
-                            <li>{`Time: ${this.props.date.split('T')[1].split('.')[0]}`}</li>
-                            <li>{`Date: ${this.props.date.split('T')[0]}`}</li>
+                            <li>{`Time: ${this.props.date.split(' ').slice(4,this.props.date.split(' ').length).join(' ')}`}</li>
+                            <li>{`Date: ${this.props.date.split(' ').slice(0,3).join(' ')}`}</li>
                             <li>{`Topic: ${this.props.slug}`}</li>
                             
 

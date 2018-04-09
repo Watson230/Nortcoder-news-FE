@@ -35,7 +35,10 @@ class Comments extends Component {
             <div>
                 <div className="comments" class="container" style={{ "width": "800px" }}>
                     {
-                        this.state.comments.map(comment => {
+                        this.state.comments.sort((a,b)=>{
+
+                            return parseInt(b.created_at) - parseInt(a.created_at)
+                        }).map(comment => {
                             return (<div class="card">
                                 <header class="card-header">
                                     <p class="card-header-title">
@@ -51,8 +54,9 @@ class Comments extends Component {
                                     <div class="content">
                                         {comment.body}
                                         <ul>
-                                            <li>{comment.created_by}</li>
-                                            <li><time datetime="2016-1-1">{comment.created_at}</time></li>
+                                            <li>{`Made By:${comment.created_by}`}</li>
+                                            <li>{`Time: ${comment.created_at.split('T')[1].split('.')[0]}`}</li>
+                                             <li>{`Date: ${comment.created_at.split('T')[0]}`}</li>
 
                                         </ul>
 

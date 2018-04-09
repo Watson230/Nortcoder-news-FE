@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import NavBar from './navbar'
 
 
 
@@ -34,9 +35,6 @@ class Users extends Component {
             this.props.history.push('/404')
 
         })
-
-
-
     }
 
     render(){
@@ -46,6 +44,7 @@ class Users extends Component {
 
 return (
     <div>
+        <NavBar/>
         <h1 className ="title is-2" >Users</h1>
         <div className ="columns">
         { this.state.users.map((user) =>{
