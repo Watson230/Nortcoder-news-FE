@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 
+
 class BlogPost extends Component {
 
 
@@ -115,7 +116,7 @@ class BlogPost extends Component {
                             <div>
                                 <p class="heading">Comments</p>
                                 <div>
-                                <p class="title">{this.state.comments}</p>
+                                <p class="title">{this.state.comments.length}</p>
                                 
                                 </div>
                             </div>

@@ -78,6 +78,7 @@ class Article extends Component {
                         {this.state.article.body}
 
                         <br />
+                        <div>
                         <ul>
                             <li><Link to={`/users/${this.state.article.created_by}`}>{`Created_By: ${this.state.article.created_by ? this.state.article.created_by : 'loading...'}`}</Link></li>
 
@@ -85,7 +86,8 @@ class Article extends Component {
                             <li>{`Date: ${this.state.article.created_at ? this.state.article.created_at.split('T')[0] : 'loading....'}`}</li>
 
                         </ul>
-
+                  
+                    </div>
                     </div>
                 </div>
                 <footer class="card-footer">
@@ -98,8 +100,8 @@ class Article extends Component {
 
                 <Comments postId={this.props.match.params.postId} />
 
-
-
+            
+             
 
 
             </div>

@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 class Comments extends Component {
 
     state = {
-        comments: []
+        comments: [],
+        commentflag: 0
     }
 
 
@@ -28,14 +29,31 @@ class Comments extends Component {
             })
     }
 
+    addCommentButtonHandler = (value) => {
+
+        this.setState({
+            comments: this.state.comments,
+            commentflag: value
+        })
+
+    }
 
     render() {
 
         return (
             <div>
                 <div className="comments" class="container" style={{ "width": "800px" }}>
+
+                <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
+                    <button class="button is-medium" onClick={(e) => {
+                        e.preventDefault()
+                        console.log('button press')
+                        this.addCommentButtonHandler(1)
+                    }} >Add Comment</button>
+                </div>
+                
                     {
-                        this.state.comments.sort((a,b)=>{
+                        this.state.comments.sort((a, b) => {
 
                             return parseInt(b.created_at) - parseInt(a.created_at)
                         }).map(comment => {
@@ -56,7 +74,7 @@ class Comments extends Component {
                                         <ul>
                                             <li>{`Made By:${comment.created_by}`}</li>
                                             <li>{`Time: ${comment.created_at.split('T')[1].split('.')[0]}`}</li>
-                                             <li>{`Date: ${comment.created_at.split('T')[0]}`}</li>
+                                            <li>{`Date: ${comment.created_at.split('T')[0]}`}</li>
 
                                         </ul>
 
@@ -72,13 +90,59 @@ class Comments extends Component {
                             )
                         })
                     }
+                    <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
+                        <button class="button is-medium" onClick={(e) => {
+                            e.preventDefault()
+                            console.log('button press')
+                            this.addCommentButtonHandler(1)
+                        }} >Add Comment</button>
+                    </div>
+
+                    {
+                        this.state.commentflag > 0 ?
+                            <div class="modal is-active">
+                                <div class="modal-background"></div>
+                                <div class="modal-card">
+
+                                    <header class="modal-card-head">
+                                        <p class="modal-card-title">Add Comment</p>
+                                        <button class="delete" aria-label="close"></button>
+                                    </header>
+
+                                    <section class="modal-card-body">
+                                        {<div class="field">
+                                            <label class="label">Comment</label>
+                                            <div class="field">
+                                                <label class="label">Name</label>
+                                                <div class="control">
+                                                    <input class="input" type="text" placeholder="Text input" value="northcoder" />
+                                                </div>
+                                            </div>
+                                            <div class="control">
+                                                <textarea class="textarea" placeholder="Textarea"></textarea>
+                                            </div>
+                                        </div>}
+                                    </section>
+
+                                    <footer class="modal-card-foot">
+                                        <button class="button is-success">Submit</button>
+                                        <button class="button"
+                                            onClick={() => { this.addCommentButtonHandler(0) }}
+
+                                        >Cancel</button>
+                                    </footer>
+
+                                </div>
+                            </div> : <div></div>
+                    }
+
                 </div>
 
-              
-                
             </div>
         )
     }
 }
+
+
 
 export default Comments
