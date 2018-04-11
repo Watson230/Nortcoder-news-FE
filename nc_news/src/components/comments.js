@@ -14,14 +14,14 @@ class Comments extends Component {
         let articleId
         if (!this.props.match) articleId = this.props.postId
         else articleId = this.props.match.params.article_id
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/articles/${articleId}/comments`)
+        fetch(`http://localhost:4000/api/articles/${articleId}/comments`)
             .then(res => {
                 return res.json();
             })
             .then(body => {
                 console.log(body)
                 this.setState({
-                    comments: body.comments
+                    comments: body
                 })
             })
             .catch(err => {
@@ -73,8 +73,8 @@ class Comments extends Component {
                                         {comment.body}
                                         <ul>
                                             <li>{`Made By:${comment.created_by}`}</li>
-                                            <li>{`Time: ${comment.created_at.split('T')[1].split('.')[0]}`}</li>
-                                            <li>{`Date: ${comment.created_at.split('T')[0]}`}</li>
+                                            {/* <li>{`Time: ${comment.created_at.split('T')[1].split('.')[0]}`}</li>
+                                            <li>{`Date: ${comment.created_at.split('T')[0]}`}</li> */}
 
                                         </ul>
 

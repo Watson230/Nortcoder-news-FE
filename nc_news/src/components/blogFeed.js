@@ -12,7 +12,7 @@ class BlogFeed extends Component {
 
     componentDidMount() {
       
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/${this.props.endPoint}?page=${this.props.pageNum}`)
+        fetch(`http://localhost:4000/api/${this.props.endPoint}`)
             .then(res => {
                 return res.json();
             })
@@ -20,7 +20,7 @@ class BlogFeed extends Component {
 
                 this.setState({
 
-                    blogPosts: body.articles
+                    blogPosts: body
 
                 })
             })
@@ -31,7 +31,7 @@ class BlogFeed extends Component {
 
     componentWillReceiveProps(nextprops) {
 
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/${nextprops.endPoint}?page=${nextprops.pageNum}`)
+        fetch(`http://localhost:4000/api/${nextprops.endPoint}`)
             .then(res => {
                
                 if (res.status === 404) {
@@ -48,19 +48,20 @@ class BlogFeed extends Component {
                 }
                 else this.setState({
 
-                    blogPosts: body.articles
+                    blogPosts: body
 
                 })
             })
             .catch(err => {
                 console.log(err)
             })
+        }
 
 
-    }
+    
 
     articleVote = (postId,vote) => {
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/articles/${postId}?vote=${vote}`, {
+        fetch(`https://northcoders-news-api.herokuapp.com/api/${postId}?vote=${vote}`, {
 
             method: "PUT",
             // body: JSON.stringify(`vote=${this.vote}`),

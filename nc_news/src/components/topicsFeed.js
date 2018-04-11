@@ -8,13 +8,14 @@ class TopicFeed extends Component {
     state = {
         topics: [],
         currentTopic: '',
-        pageNum: 0
+        loaded:false,
+
     }
 
 
     componentDidMount() {
 
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/topics`)
+        fetch(`http://localhost:4000/api/topics`)
             .then(res => {
 
                 return res.json();
@@ -23,8 +24,9 @@ class TopicFeed extends Component {
 
                 this.setState({
 
-                    topics: body.topics,
-                    currentTopic: body.topics[0].slug
+                    topics: body,
+                    currentTopic: body[0].slug,
+                    loaded:true
 
                 })
             })
@@ -34,34 +36,13 @@ class TopicFeed extends Component {
             })
     }
 
-    componentWillReceiveProps(nextProps) {
-
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/topics`)
-            .then(res => {
-
-                return res.json();
-            })
-            .then(body => {
-
-                this.setState({
-
-                    topics: body.topics,
-                    currentTopic: this.state.currentTopic
-
-                })
-            })
-            .catch(err => {
-                console.log(err)
-
-            })
-    }
-
+   
 
     topicChangeHandler = (slug) => {
 
         this.setState({
             currentTopic: slug,
-            pageNum: 0
+            
         })
     }
 
@@ -77,8 +58,10 @@ class TopicFeed extends Component {
     }
 
 
+
     render() {
 
+        if(!this.state.loaded) return null
 
         return (
             <div>
@@ -92,7 +75,7 @@ class TopicFeed extends Component {
                 <div class="tabs is-centered">
                     <ul>
                         {this.state.topics.map(topic => {
-
+                            console.log(topic)
                             return <li class="is-active"
                                 onClick={() => {
 
@@ -101,7 +84,7 @@ class TopicFeed extends Component {
 
                                 }
 
-                            ><a>{topic.name}</a></li>
+                            ><a>{topic.title}</a></li>
                         })}
 
 
@@ -125,7 +108,8 @@ class TopicFeed extends Component {
                         </div>
                     </div>
 
-                    <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`} pageNum={this.state.pageNum} />
+                            
+                    <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`} />
 
                     <div style={{ "text-align": "center" , "margin-top":"20px","margin-bottom":"20px"}}>
                         <div class="container" style={{ "width": "1000px", "text-align": "center" }}>

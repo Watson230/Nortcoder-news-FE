@@ -15,7 +15,7 @@ class Article extends Component {
     componentWillMount() {
 
         console.log(this.props.match.params)
-        fetch(`https://northcoders-sprints-api.now.sh/api/news/articles/${this.props.match.params.postId}`)
+        fetch(`http://localhost:4000/api/articles/${this.props.match.params.postId}`)
             .then(res => {
                 console.log(res)
                 // if(res.status ===  404 ){
@@ -24,10 +24,10 @@ class Article extends Component {
                 return res.json();
             })
             .then(body => {
-
+                console.log(body)
                 this.setState({
 
-                    article: body.article
+                    article: body[0]
 
                 })
             })

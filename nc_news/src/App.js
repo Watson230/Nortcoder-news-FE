@@ -63,7 +63,7 @@ const HomeFeed = (props) => {
                         </div>
                 </div>
       <div>
-      <BlogFeed endPoint ={'articles'} pageNum={0} />
+      <BlogFeed endPoint ={'articles'} />
       </div>
     </div>
   )
