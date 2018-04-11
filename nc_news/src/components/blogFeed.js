@@ -11,7 +11,7 @@ class BlogFeed extends Component {
 
 
     componentDidMount() {
-      
+
         fetch(`http://localhost:4000/api/${this.props.endPoint}`)
             .then(res => {
                 return res.json();
@@ -33,14 +33,14 @@ class BlogFeed extends Component {
 
         fetch(`http://localhost:4000/api/${nextprops.endPoint}`)
             .then(res => {
-               
+
                 if (res.status === 404) {
                     throw new Error('Content does not exist')
                 }
                 return res.json();
             })
             .then(body => {
-                
+
                 if (body.count === 0) {
                     // throw new Error('Content does not exist')
 
@@ -55,37 +55,39 @@ class BlogFeed extends Component {
             .catch(err => {
                 console.log(err)
             })
-        }
+    }
 
 
-    
 
-    articleVote = (postId,vote) => {
-        fetch(`https://northcoders-news-api.herokuapp.com/api/${postId}?vote=${vote}`, {
+
+    articleVote = (postId, vote) => {
+
+        
+        fetch(`http://localhost:4000/api/articles/${postId}?vote=${vote}`, {
 
             method: "PUT",
             // body: JSON.stringify(`vote=${this.vote}`),
             // headers: new Headers({
             //     'Content-Type': 'application/json'
             //   }),
-            type:'cors'
+            type: 'cors'
 
 
         })
             .then(res => {
-                
+
                 return res.json();
             })
             .then(body => {
-               
-                
-                let newState = this.state.blogPosts.map( (article,i)=>{
-                   
-                    if(article._id === body.article._id) return body.article
+                     console.log(body)
+
+                let newState = this.state.blogPosts.map((article, i) => {
+
+                    if (article._id === body._id) return body
                     else return article
                 })
 
-                
+
 
                 this.setState({
 
@@ -106,15 +108,15 @@ class BlogFeed extends Component {
         return (
             <div >
                 <div class="container" style={{ "width": "1000px" }}>
-                
 
-                    {this.state.blogPosts.sort((a,b)=>{
-                        return b.votes-a.votes
+
+                    {this.state.blogPosts.sort((a, b) => {
+                        return b.votes - a.votes
                     }).map(post => {
 
-                        return <BlogPost postId={post._id} author={post.created_by} 
-                        title={post.title} date={post.created_at} votes={post.votes}
-                         comments={post.comments} vote={this.articleVote} slug={post.belongs_to}/>
+                        return <BlogPost postId={post._id} author={post.created_by}
+                            title={post.title} date={post.created_at} votes={post.votes}
+                            comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />
 
                     })}
                 </div>

@@ -38,7 +38,6 @@ class Article extends Component {
 
             })
 
-
     }
 
 
