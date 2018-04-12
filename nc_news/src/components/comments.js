@@ -77,6 +77,45 @@ class Comments extends Component {
             })
     }
 
+    commentVoteHandler =(commentId,vote)=>{
+
+        fetch(`http://localhost:4000/api/comments/${commentId}?vote=${vote}`, {
+
+            method: "PUT",
+            type: 'cors'
+
+
+        })
+            .then(res => {
+
+                return res.json();
+            })
+            .then(body => {
+                     console.log(body)
+
+                let newState = this.state.comments.map((comment, i) => {
+
+                    if (comment._id === body._id) return body
+                    else return comment
+                })
+
+
+
+                this.setState({
+
+                    comments: newState,
+                    commentflag: 0,
+                    newComment: '',
+                    articleId: this.state.articleId
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
+
+
 
 
 
@@ -110,6 +149,24 @@ render() {
                                         <i class="fas fa-angle-down" aria-hidden="true"></i>
                                     </span>
                                 </a>
+                                <div class="card-header-item" style={{"display":"inline-block", "text-align":"center"}}>
+                                                
+                                                <div style={{"vertical-align":"middle"}}>
+                                               <p>{comment.votes}</p>
+                                               </div>
+                                               <div style={{"display":"inline-block","vertical-align":"middle"}}>
+                                                <button onClick={()=>{
+                                                    this.commentVoteHandler(comment._id, 'down')
+                                                }}
+                                                
+                                                
+                                                style={{"margin-left":"10px"}}> - </button>
+                                               <button onClick={()=>{
+                                                    this.commentVoteHandler(comment._id, 'up')
+                                                }}
+                                               style={{"margin-right":"10px"}}> + </button>
+                                               </div>
+                                    </div>
                             </header>
                             <div class="card-content">
                                 <div class="content">
@@ -126,8 +183,8 @@ render() {
                                 </div>
                             </div>
                             <footer class="card-footer">
-                                <Link to={`/users/${comment.created_by}`} class="card-footer-item">{`${comment.created_by}'s profile`}</Link>
-
+                                <Link class="card-footer-item" to={`/users/${comment.created_by}`} class="card-footer-item">{`${comment.created_by}'s profile`}</Link>
+                           
                             </footer>
                         </div>
                         )
