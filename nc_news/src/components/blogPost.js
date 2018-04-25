@@ -48,11 +48,11 @@ class BlogPost extends Component {
     render() {
 
         return (
-            <div className="blogpost">
+            <div class ="box">
 
                 <div class="card">
-                    <div class="card-content" style={{ "display": "inline-block" }} >
-                        <div style={{ "width": "1100px", "float": "left" }}>
+                    <div class="card-content" style={{ "display": "inline-block", "width":"100%" }}  >
+                        <div style={{ "width": "75%", "float": "left" }}>
                             <p class="title">
                                 <Link to={`/article/${this.props.postId}`}> {this.props.title}</Link>
                             </p>
@@ -66,8 +66,8 @@ class BlogPost extends Component {
                             </ul>
                         </div>
 
-                        <div style={{ "float": "left", "margin-right": "10px", "width": "100px", "height": "160px", "margin-left": "50px", "text-align": "center" }}>
-                            <div style={{ "margin-bottom": "10px", "margin-top": "30px" }}>
+                        <div style={{ "float": "left", "width": "10%", "height": "100%", "margin-left": "90px", "text-align": "center","border":"solid"}}>
+                            <div style={{ "margin-bottom": "10px", "margin-top": "10px" }}>
                                 <button onClick={() => {
                                     this.props.vote(this.props.postId, 'up')
                                 }} class="button is-success is-rounded is-medium"> + </button>
