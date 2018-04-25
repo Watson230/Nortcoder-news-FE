@@ -152,7 +152,7 @@ render() {
                                 <div class="card-header-item" style={{"display":"inline-block", "text-align":"center"}}>
                                                 
                                                 <div style={{"vertical-align":"middle"}}>
-                                               <p>{comment.votes}</p>
+                                               <p>{`Votes:${comment.votes}`}</p>
                                                </div>
                                                <div style={{"display":"inline-block","vertical-align":"middle"}}>
                                                 <button onClick={()=>{

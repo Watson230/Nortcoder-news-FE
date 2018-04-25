@@ -62,7 +62,7 @@ class BlogFeed extends Component {
 
     articleVote = (postId, vote) => {
 
-        
+        // map through  blog posts, where id 
         fetch(`http://localhost:4000/api/articles/${postId}?vote=${vote}`, {
 
             method: "PUT",
@@ -107,7 +107,9 @@ class BlogFeed extends Component {
     render() {
         return (
             <div >
-                <div class="container" style={{ "width": "1000px" }}>
+
+                
+                <div  style={{ "width": "1330px" }}>
 
 
                     {this.state.blogPosts.sort((a, b) => {
