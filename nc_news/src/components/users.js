@@ -24,13 +24,10 @@ class Users extends Component {
             .then(body => {
 
                 this.setState({
-
                     users: body.users
-
                 })
             })
             .catch(err => {
-
                 console.log(err)
                 this.props.history.push('/404')
 
@@ -39,14 +36,9 @@ class Users extends Component {
 
     render() {
 
-        console.log('state', this.state)
-
-
         return (
             <div>
                 <NavBar />
-
-
 
                 <div class="container" style={{ "margin-bottom": "20px" }}>
                     <div class="notification" style={{ "text-aline": "center" }}>
@@ -54,7 +46,7 @@ class Users extends Component {
                     </div>
                 </div>
                 <div class="container">
-                    
+
                     <div className="columns"  >
                         {this.state.users.map((user) => {
 

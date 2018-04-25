@@ -48,59 +48,61 @@ class Article extends Component {
         return (
 
             <div>
-                    <NavBar/>
+                <NavBar />
 
-                    <div className ="article NavButtons" style={{ "text-align": "center" }}>
-                        <div class="container" style={{ "width": "1000px", "text-align": "center" ,"margin-bottom":"20px"}}>
-                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Article</button>
+                <div className="article NavButtons" style={{ "text-align": "center" }}>
+                    <div class="container" style={{ "width": "1000px", "text-align": "center", "margin-bottom": "20px" }}>
+                        <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Article</button>
 
 
-                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Article</button>
-                        </div>
-                    </div>
-
-                <div class="card" style={{"margin-bottom":"20px"}}>
-                <header class="card-header">
-                <div>
-                <div>
-                    <p className="card-header-title" className="title is-1">
-                        {this.state.article.title}
-                    </p>
-                    </div>
-                    <div>
-                    <h2 class="subtitle is-3"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
-                    </div>
-                    </div>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        {this.state.article.body}
-
-                        <br />
-                        <div>
-                        <ul>
-                            <li><Link to={`/users/${this.state.article.created_by}`}>{`Created_By: ${this.state.article.created_by ? this.state.article.created_by : 'loading...'}`}</Link></li>
-
-                            <li>{`Time: ${this.state.article.created_at ? this.state.article.created_at.split('T')[1].split('.')[0] : 'loading....'}`}</li>
-                            <li>{`Date: ${this.state.article.created_at ? this.state.article.created_at.split('T')[0] : 'loading....'}`}</li>
-
-                        </ul>
-                  
-                    </div>
+                        <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Article</button>
                     </div>
                 </div>
-                <footer class="card-footer">
-                    <Link to={`/users/${this.state.article.created_by}`} class="card-footer-item">{`${this.state.article.created_by}'s profile`}</Link>
 
-                </footer>
+                <div class="container" >
+                <div class="card" style={{ "margin-top": "10px" }}>
+                    <header class="card-header">
+                        <div style={{ "margin-bottom": "10px" ,"margin-top": "10px","margin-left": "10px" }}>
+                            <div>
+                                <p className="card-header-title" className="title is-2">
+                                    {this.state.article.title}
+                                </p>
+                            </div>
+                            <div>
+                                <h2 class="subtitle is-3"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            {this.state.article.body}
 
+                            <br />
+                            <div>
+                                <ul>
+                                    <li><Link to={`/users/${this.state.article.created_by}`}>{`Created_By: ${this.state.article.created_by ? this.state.article.created_by : 'loading...'}`}</Link></li>
+
+                                    <li>{`Time: ${this.state.article.created_at ? this.state.article.created_at.split('T')[1].split('.')[0] : 'loading....'}`}</li>
+                                    <li>{`Date: ${this.state.article.created_at ? this.state.article.created_at.split('T')[0] : 'loading....'}`}</li>
+
+                                </ul>
+
+                            </div>
+                        </div>
                     </div>
+                    <footer class="card-footer">
+                        <Link to={`/users/${this.state.article.created_by}`} class="card-footer-item">{`${this.state.article.created_by}'s profile`}</Link>
+
+                    </footer>
+
+                </div>
+                </div>
 
 
                 <Comments postId={this.props.match.params.postId} />
 
-            
-             
+
+
 
 
             </div>
