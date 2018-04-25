@@ -115,7 +115,7 @@ class BlogFeed extends Component {
                     {this.state.blogPosts.sort((a, b) => {
                         return b.votes - a.votes
                     }).map(post => {
-
+                            
                         return <BlogPost postId={post._id} author={post.created_by}
                             title={post.title} date={post.created_at} votes={post.votes}
                             comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />
