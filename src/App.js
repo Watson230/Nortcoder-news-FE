@@ -17,22 +17,8 @@ class App extends Component {
   }
   render() {
     return (
-      <div >
-        <section class="hero is-danger">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                NorthCoder News
-      </h1>
-              <h2 class="subtitle">
-                News for Northcoders in the North
-      </h2>
-            </div>
-          </div>
-        </section>
-
-
-
+      
+    
         <BrowserRouter>
 
           <Switch>
@@ -47,7 +33,7 @@ class App extends Component {
             <Route path="/topics" component={Topics} />
           </Switch>
         </BrowserRouter>
-      </div>
+      
     );
   }
 }
