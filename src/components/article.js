@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-import Comments from './comments'
+import CommentsFeed from './commentsFeed'
 import NavBar from './navbar'
 
 class Article extends Component {
@@ -99,7 +99,7 @@ class Article extends Component {
                 </div>
 
 
-                <Comments postId={this.props.match.params.postId} />
+                <CommentsFeed postId={this.props.match.params.postId} />
 
 
 

@@ -8,7 +8,9 @@ class BlogPost extends Component {
 
     state = {
         votes: this.props.votes,
-        comments: this.props.comments
+        comments: this.props.comments,
+        voted:false
+        
     }
 
 
@@ -31,7 +33,8 @@ class BlogPost extends Component {
                 this.setState({
 
                     votes: this.props.votes,
-                    comments: body
+                    comments: body,
+                    commentCount:body.length
 
                 })
 
@@ -41,8 +44,6 @@ class BlogPost extends Component {
                 console.log(err)
             })
     }
-
-
 
 
     render() {
@@ -76,9 +77,16 @@ class BlogPost extends Component {
                             <div style={{ "margin-top": "10px" }}>
                                 <button onClick={() => {
                                     this.props.vote(this.props.postId, 'down')
-                                }} class="button is-danger is-rounded is-medium"> - </button>
+                                    this.setState({
+                                        votes: this.props.votes,
+                                        comments: this.props.comments,
+                                        voted:true
+                                    })
+                                    
+                                }} class="button is-danger is-rounded is-medium" title={this.state.voted? "Disabled button disabled ":null}> - </button>
                             </div>
                         </div>
+
                     </div>
                     <div style={{ "margin-bottom": "10px" }}>
                         <nav class="level">
@@ -109,13 +117,15 @@ class BlogPost extends Component {
                             </div>
 
                             <div class="level-item has-text-centered">
+                            
                                 <div>
                                     <p class="heading">Comments</p>
                                     <div>
-                                        <p class="title">{this.state.comments.length}</p>
+                                        <p class="title">{this.state.commentCount}</p>
 
                                     </div>
                                 </div>
+                            
                             </div>
 
                         </nav>

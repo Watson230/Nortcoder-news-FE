@@ -4,7 +4,7 @@ import BlogFeed from './components/blogFeed'
 import Article from './components/article'
 import Topics from './components/topicsFeed'
 import NavBar from './components/navbar'
-import comments from './components/comments'
+import commentsFeed from './components/commentsFeed'
 import UserProfile from './components/userProfile'
 import Users from './components/users'
 
@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/" component={HomeFeed} />
             <Route path="/article/:postId" component={Article} />
             <Route exact path="/articles/page/:pageNumber" component={Feed} />
-            <Route path="/articles/:article_id/comments" component={comments} />
+            <Route path="/articles/:article_id/comments" component={commentsFeed} />
             <Route path="/users/:username" component={UserProfile} />
             <Route path="/article/:article_id" component={Article} />
             <Route path="/users" component={Users} />
