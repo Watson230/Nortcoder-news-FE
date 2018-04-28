@@ -103,12 +103,37 @@ class CommentFeed extends Component {
 
     }
 
-    deleteComment =(commentId)=>{
+    deleteComment = (commentId) => {
 
+        let newComments = this.state.comments.map((comment, commentId) => {
+            if (!comment._id === commentId) return comment
+        })
 
-
-
+        fetch(`http://localhost:4000/api/comments/${commentId}`, {
+            method: 'DELETE',
+            type: 'cors'
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(body => {
+                console.log(body)
+                this.setState({
+                    comments: newComments,
+                    commentflag: this.state.commentflag,
+                    articleId: this.state.articleId
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
+
+
+
+
+
+
 
     render() {
 
@@ -130,16 +155,16 @@ class CommentFeed extends Component {
                             return parseInt(b.created_at) - parseInt(a.created_at)
                         }).map(comment => {
                             return (
-                            
-                                    <Comment voteHandler ={this.commentVoteHandler} votes={comment.votes} Id ={comment._id}
-                                    text={comment.body} createdBy = {comment.created_by} createdAt ={comment.created_at}
-                                    addCommentButtonHandler={this.addCommentButtonHandler}
-                                    />
+
+                                <Comment voteHandler={this.commentVoteHandler} votes={comment.votes} Id={comment._id}
+                                    text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}
+                                    addCommentButtonHandler={this.addCommentButtonHandler} deleteComment={this.deleteComment}
+                                />
                             )
                         })
                     }
 
-                    
+
                     <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
                         <button class="button is-medium" onClick={(e) => {
                             e.preventDefault()
@@ -150,11 +175,11 @@ class CommentFeed extends Component {
 
                     {
                         this.state.commentflag > 0 ?
-                           <div>
-                               <AddCommentModal newComment ={this.state.newComment} addCommentButtonHandler={this.addCommentButtonHandler}
-                               addNewComment={this.addNewComment} articleId ={this.state.articleId} addNewComment={this.addNewComment}
-                               
-                               />
+                            <div>
+                                <AddCommentModal newComment={this.state.newComment} addCommentButtonHandler={this.addCommentButtonHandler}
+                                    addNewComment={this.addNewComment} articleId={this.state.articleId} addNewComment={this.addNewComment}
+
+                                />
 
                             </div> : <div></div>
                     }

@@ -25,7 +25,7 @@ render(){
                     <div style={{ "textAlign": "center", "float": "left", "margin-right": "10px", "margin-left": "10px" }}>
                         <div>
                             <button onClick={() => {
-                                this.props.voteHandler(this.props.id, 'up')
+                                this.props.voteHandler(this.props.Id, 'up')
                             }}
                                 style={{}} class="button is-success" > + </button>
                         </div>
@@ -54,7 +54,14 @@ render(){
                     <br />
                     {this.props.createdBy === 'northcoder' ? <div>
 
-                        <button>Delete</button>
+                        <button
+                        onClick={()=>{
+                            console.log('delete comment')
+                            this.props.deleteComment(this.props.Id)
+
+                        }}
+                        
+                        >Delete</button>
 
                     </div> : <div></div>}
 
