@@ -139,7 +139,7 @@ class CommentFeed extends Component {
 
         return (
             <div class="container">
-                <div className="comments" style={{ "width": "1340px" }}>
+                <div className="comments" style={{ "width": "100%" }}>
 
                     <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
                         <button class="button is-medium" onClick={(e) => {

@@ -9,8 +9,9 @@ class BlogPost extends Component {
     state = {
         votes: this.props.votes,
         comments: this.props.comments,
-        voted:false
-        
+        votedDown: false,
+        Votedup:false
+
     }
 
 
@@ -34,7 +35,7 @@ class BlogPost extends Component {
 
                     votes: this.props.votes,
                     comments: body,
-                    commentCount:body.length
+                    commentCount: body.length
 
                 })
 
@@ -49,10 +50,10 @@ class BlogPost extends Component {
     render() {
 
         return (
-            <div class ="box">
+            <div class="box">
 
                 <div class="card">
-                    <div class="card-content" style={{ "display": "inline-block", "width":"100%" }}  >
+                    <div class="card-content" style={{ "display": "inline-block", "width": "100%" }}  >
                         <div style={{ "width": "80%", "float": "left" }}>
                             <p class="title">
                                 <Link to={`/article/${this.props.postId}`}> {this.props.title}</Link>
@@ -67,24 +68,44 @@ class BlogPost extends Component {
                             </ul>
                         </div>
 
-                        <div style={{ "float": "left", "width": "10%", "height": "100%", "margin-left": "120px", "text-align": "center"}}>
-                            <div style={{ "margin-bottom": "10px", "margin-top": "10px" }}>
-                                <button onClick={() => {
-                                    this.props.vote(this.props.postId, 'up')
-                                }} class="button is-success is-rounded is-medium"> + </button>
-                            </div>
+                        <div style={{ "float": "left", "width": "10%", "height": "100%", "margin-left": "120px", "text-align": "center" }}>
+                            {this.state.votedUp ?
+
+                                <div style={{ "margin-top": "10px", "margin-bottom": "10px"}}>
+                                    <button class="button is-success is-rounded is-medium" disabled> + </button>
+                                </div>:
+                                <div style={{ "margin-bottom": "10px", "margin-top": "10px" }}>
+                                    <button onClick={() => {
+                                        this.props.vote(this.props.postId, 'up')
+                                        this.setState({
+                                            votes: this.props.votes,
+                                            comments: this.props.comments,
+                                            votedDown: false,
+                                            votedUp: true
+                                        })
+                                    }} class="button is-success is-rounded is-medium"> + </button>
+                                </div> 
+                            }
                             <p>Vote</p>
-                            <div style={{ "margin-top": "10px" }}>
-                                <button onClick={() => {
-                                    this.props.vote(this.props.postId, 'down')
-                                    this.setState({
-                                        votes: this.props.votes,
-                                        comments: this.props.comments,
-                                        voted:true
-                                    })
-                                    
-                                }} class="button is-danger is-rounded is-medium" title={this.state.voted? "Disabled button disabled ":null}> - </button>
-                            </div>
+
+                            {this.state.votedDown ?
+                                
+                                <div style={{ "margin-top": "10px" }}>
+                                    <button class="button is-danger is-rounded is-medium" disabled> - </button>
+                                </div> :
+                                <div style={{ "margin-top": "10px" }}>
+                                    <button onClick={() => {
+                                        this.props.vote(this.props.postId, 'down')
+                                        this.setState({
+                                            votes: this.props.votes,
+                                            comments: this.props.comments,
+                                            votedDown: true,
+                                            votedUp: false
+                                        })
+                                    }} class="button is-danger is-rounded is-medium"> - </button>
+                                </div>
+                            }
+
                         </div>
 
                     </div>
@@ -117,7 +138,7 @@ class BlogPost extends Component {
                             </div>
 
                             <div class="level-item has-text-centered">
-                            
+
                                 <div>
                                     <p class="heading">Comments</p>
                                     <div>
@@ -125,7 +146,7 @@ class BlogPost extends Component {
 
                                     </div>
                                 </div>
-                            
+
                             </div>
 
                         </nav>

@@ -50,14 +50,14 @@ class Article extends Component {
             <div>
                 <NavBar />
 
-                <div className="article NavButtons" style={{ "text-align": "center" }}>
+                {/* <div className="article NavButtons" style={{ "text-align": "center" }} >
                     <div class="container" style={{ "width": "1000px", "text-align": "center", "margin-bottom": "20px" }}>
                         <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Article</button>
 
 
                         <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Article</button>
                     </div>
-                </div>
+                </div> */}
 
                 <div class="container" >
                 <div class="card" style={{ "margin-top": "10px" }}>
@@ -98,10 +98,10 @@ class Article extends Component {
                 </div>
                 </div>
 
-
+                <div class="box">
                 <CommentsFeed postId={this.props.match.params.postId} />
 
-
+                </div>
 
 
 
