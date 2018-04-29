@@ -42,6 +42,7 @@ class TopicFeed extends Component {
 
         this.setState({
             currentTopic: slug,
+            [slug]:"is-active"
             
         })
     }
@@ -65,7 +66,7 @@ class TopicFeed extends Component {
 
         return (
             <div>
-                <NavBar />
+                <NavBar tab={'topics'}/>
                 <div class="container">
                     <div class="notification" style={{ "text-aline": "center" }}>
                         <p class="title is-3 ">Northcoder News Topics</p>
@@ -76,18 +77,14 @@ class TopicFeed extends Component {
                     <ul>
                         {this.state.topics.map(topic => {
                             console.log(topic)
-                            return <li class="is-active"
+                            return <li class=''
                                 onClick={() => {
 
                                     this.topicChangeHandler(topic.slug)
                                 }
-
                                 }
-
                             ><a>{topic.title}</a></li>
                         })}
-
-
                     </ul>
 
                 </div>
@@ -98,15 +95,7 @@ class TopicFeed extends Component {
 
                     {/* <div style={{"margin":"auto"}}> <button class="button is-medium" onClick={this.pageChangeHandler}>Prev Page</button>   <button class="button is-medium" onClick={this.pageChangeHandler}> Next Page</button></div> */}
 
-                    <div style={{ "text-align": "center" }}>
-                        <div class="container" style={{ "width": "1000px", "text-align": "center" ,"margin-bottom":"20px"}}>
-                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Page</button>
-
-                            <span class="title is-4"> {`Page ${parseInt(this.state.pageNum) + 1}`}</span>
-
-                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Page</button>
-                        </div>
-                    </div>
+                  
 
                             
                     <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`} />

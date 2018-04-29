@@ -42,7 +42,7 @@ const HomeFeed = (props) => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar tab={'latest'}/>
       <div style={{ "margin-bottom": "50px" }} class="container">
         <div class="notification" style={{ "text-aline": "center" }}>
           <p class="title is-3 ">Most Popular On NorthCoder News</p>
@@ -63,7 +63,7 @@ const Feed = (props) => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar tab={'articles'}/>
 
       <div class="container">
         <div class="notification" style={{ "text-aline": "center" ,"margin-bottom":"20px"}}>

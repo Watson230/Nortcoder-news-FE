@@ -38,7 +38,7 @@ class Users extends Component {
 
         return (
             <div>
-                <NavBar />
+                <NavBar tab={'users'}/>
 
                 <div class="container" style={{ "margin-bottom": "20px" }}>
                     <div class="notification" style={{ "text-aline": "center" }}>
