@@ -9,6 +9,9 @@ class TopicFeed extends Component {
         topics: [],
         currentTopic: '',
         loaded:false,
+        coding:"is-active",
+        cooking:"",
+        football:''
 
     }
 
@@ -38,26 +41,52 @@ class TopicFeed extends Component {
 
    
 
-    topicChangeHandler = (slug) => {
 
-        this.setState({
-            currentTopic: slug,
-            [slug]:"is-active"
-            
-        })
+  
+
+    tabChangerHandeler =(activeTab)=>{
+        if(activeTab === 'coding'){
+
+            this.setState({
+                topics:this.state.topics,
+                currentTopic: activeTab,
+                loaded:true,
+                coding:"is-active",
+                cooking:'',
+                football:''
+
+
+            })
+        }
+        if(activeTab === 'cooking'){
+
+            this.setState({
+                topics:this.state.topics,
+                currentTopic: activeTab,
+                loaded:true,
+                coding:"",
+                cooking:"is-active",
+                football:''
+
+
+            })
+        }
+
+        if(activeTab === 'football'){
+
+            this.setState({
+                topics:this.state.topics,
+                currentTopic: activeTab,
+                loaded:true,
+                coding:"",
+                cooking:"",
+                football:"is-active"
+
+
+            })
+        }
+
     }
-
-    pageChangeHandler = () => {
-
-        this.setState({
-            pageNum: this.state.pageNum + 1,
-            topics: this.state.topics,
-            currentTopic: this.state.currentTopic
-        })
-
-
-    }
-
 
 
     render() {
@@ -77,10 +106,11 @@ class TopicFeed extends Component {
                     <ul>
                         {this.state.topics.map(topic => {
                             console.log(topic)
-                            return <li class=''
+                            return <li class={this.state[topic.slug]}
                                 onClick={() => {
 
-                                    this.topicChangeHandler(topic.slug)
+                                    
+                                    this.tabChangerHandeler(topic.slug)
                                 }
                                 }
                             ><a>{topic.title}</a></li>

@@ -30,9 +30,9 @@ class App extends Component {
             <Route path="/users/:username" component={UserProfile} />
             <Route path="/article/:article_id" component={Article} />
             <Route path="/users" component={Users} />
-            <Route path="/404" component={ErrorPage} />
-
             <Route path="/topics" component={Topics} />
+            <Route path="/404" component={ErrorPage} />
+            <Route component={ErrorPage}/>
           </Switch>
         </BrowserRouter>
       
@@ -58,10 +58,7 @@ const HomeFeed = (props) => {
 }
 
 const Feed = (props) => {
-  let pageNumber
-  if (props.match.params.pageNumber > 0) {
-    pageNumber = props.match.params.pageNumber
-  } else pageNumber = 0
+
 
   return (
     <div>
@@ -72,29 +69,10 @@ const Feed = (props) => {
           <p class="title is-3 ">Northcoder News Articles</p>
         </div>
       </div>
-      <div style={{ "text-align": "center" }}>
-        <div class="container" style={{ "width": "1000px", "text-align": "center", "margin-bottom": "20px" }}>
-          <button class="button is-medium" style={{ "margin-right": "20px" }} ><Link to={`/articles/page/${Number(pageNumber) - 1}`}>Prev Page</Link></button>
-
-          <span class="title is-4"> {`Page ${parseInt(pageNumber) + 1}`}</span>
-
-          <button class="button is-medium" style={{ "margin-left": "20px" }} ><Link to={`/articles/page/${Number(pageNumber) + 1}`}> Next Page</Link></button>
-        </div>
+    
+      <div class="box">
+        <BlogFeed endPoint={'articles'}/>
       </div>
-      <div class="container">
-        <BlogFeed endPoint={'articles'} pageNum={pageNumber} />
-      </div>
-
-      <div style={{ "text-align": "center", "margin-bottom": "20px", "margin-top": "20px" }}>
-        <div class="container" style={{ "width": "1000px", "text-align": "center" }}>
-          <button class="button is-medium" style={{ "margin-right": "20px" }} ><Link to={`/articles/page/${Number(pageNumber) - 1}`}>Prev Page</Link></button>
-
-          <span class="title is-4"> {`Page ${parseInt(pageNumber) + 1}`}</span>
-
-          <button class="button is-medium" style={{ "margin-left": "20px" }} ><Link to={`/articles/page/${Number(pageNumber) + 1}`}> Next Page</Link></button>
-        </div>
-      </div>
-
 
     </div>
   )

@@ -14,8 +14,8 @@ const ErrorPage = () => {
 
                     </div>
                 </article>
+           <Link to={"/"}><button class="is-button is-white"> Home</button></Link>
             </div>
-           <Link to={"/"}><button> Home</button></Link>
         </div>
 
        

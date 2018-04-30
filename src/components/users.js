@@ -45,7 +45,7 @@ class Users extends Component {
                         <p class="title is-3 ">Northcoder News Users</p>
                     </div>
                 </div>
-                <div class="container">
+                <div class="box" style={{'margins':"0 auto"}}>
 
                     <div className="columns"  >
                         {this.state.users.map((user) => {

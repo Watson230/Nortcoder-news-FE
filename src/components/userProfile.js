@@ -35,6 +35,7 @@ class User extends Component {
             })
             .catch(err => {
                 console.log(err)
+                this.props.history.push('/404')
 
             })
 
@@ -61,6 +62,7 @@ class User extends Component {
             })
             .catch(err => {
                 console.log(err)
+                this.props.history.push('/404')
             })
     }
 
@@ -101,6 +103,7 @@ class User extends Component {
             })
             .catch(err => {
                 console.log(err)
+                this.props.history.push('/404')
             })
 
 
