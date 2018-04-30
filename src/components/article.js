@@ -24,7 +24,7 @@ class Article extends Component {
                 return res.json();
             })
             .then(body => {
-                console.log(body)
+                console.log('articles',body)
                 this.setState({
 
                     article: body[0]

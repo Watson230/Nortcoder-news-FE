@@ -13,7 +13,7 @@ class Users extends Component {
 
     componentWillMount() {
 
-        fetch(`http://northcoders-news-api.herokuapp.com/api/users`)
+        fetch(`http://localhost:4000/api/users`)
             .then(res => {
                 console.log(res)
                 // if(res.status ===  404 ){
@@ -22,9 +22,9 @@ class Users extends Component {
                 return res.json();
             })
             .then(body => {
-
+                console.log(body)
                 this.setState({
-                    users: body.users
+                    users: body
                 })
             })
             .catch(err => {

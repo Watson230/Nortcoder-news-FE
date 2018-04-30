@@ -49,7 +49,7 @@ const HomeFeed = (props) => {
         </div>
       </div>
       <div class="container">
-        <BlogFeed endPoint={'articles'} />
+        <BlogFeed endPoint={'articles/mostPopular'} />
       </div>
     </div>
   )

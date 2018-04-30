@@ -71,7 +71,7 @@ class BlogPost extends Component {
                         <div style={{ "float": "left", "width": "10%", "height": "100%", "margin-left": "120px", "text-align": "center" }}>
                             {this.state.votedUp ?
 
-                                <div style={{ "margin-top": "10px", "margin-bottom": "10px"}}>
+                                <div style={{ "margin-top": "10px","margin-bottom": "10px" }}>
                                     <button class="button is-success is-rounded is-medium" disabled> + </button>
                                 </div>:
                                 <div style={{ "margin-bottom": "10px", "margin-top": "10px" }}>
@@ -142,7 +142,7 @@ class BlogPost extends Component {
                                 <div>
                                     <p class="heading">Comments</p>
                                     <div>
-                                        <p class="title">{this.state.commentCount}</p>
+                                        <p class="title">{this.state.commentCount? this.state.commentCount:0}</p>
 
                                     </div>
                                 </div>

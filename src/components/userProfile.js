@@ -10,15 +10,17 @@ class User extends Component {
         user: [],
         userArticles: [],
         userComments: [],
-        endpoint: 'articles'
+        endpoint: 'articles',
+        articlesTab: "is-active"
     }
 
 
     componentWillMount() {
-        console.log(this.props.match.params.userName)
+        console.log('username', this.props.match.params.username)
         fetch(`http://localhost:4000/api/users/${this.props.match.params.username}`)
             .then(res => {
-                console.log(res)
+
+                // if(res.state === 404)
                 return res.json();
             })
             .then(body => {
@@ -28,7 +30,6 @@ class User extends Component {
                     user: body[0],
                     userArticles: [],
                     endpoint: 'articles'
-
 
                 })
             })
@@ -42,23 +43,21 @@ class User extends Component {
 
     componentDidMount() {
 
-        console.log(this.state.endpoint)
+
         fetch(`http://localhost:4000/api/users/${this.props.match.params.username}/${this.state.endpoint}`)
             .then(res => {
-                console.log(res)
+
                 return res.json();
             })
             .then(body => {
-                console.log(body)
+
                 this.setState({
 
                     user: this.state.user,
                     userArticles: body,
                     endpoint: this.state.endpoint
-
-
                 })
-                console.log(this.state)
+
             })
             .catch(err => {
                 console.log(err)
@@ -68,10 +67,10 @@ class User extends Component {
 
 
     endpointChangeHandler = (endpoint) => {
-        console.log(endpoint)
+
         fetch(`http://localhost:4000/api/users/${this.props.match.params.username}/${endpoint}`)
             .then(res => {
-                console.log(res)
+
                 return res.json();
             })
             .then(body => {
@@ -82,7 +81,9 @@ class User extends Component {
                         user: this.state.user,
                         userArticles: [],
                         userComments: body,
-                        endpoint: endpoint
+                        endpoint: endpoint,
+                        commentsTab: "is-active",
+                        articlesTab: ""
                     })
                 }
                 else {
@@ -91,17 +92,18 @@ class User extends Component {
                         user: this.state.user,
                         userArticles: body,
                         userComments: [],
-                        endpoint: endpoint
+                        endpoint: endpoint,
+                        commentsTab: "",
+                        articlesTab: "is-active"
                     })
                 }
-                console.log(this.state)
+
             })
             .catch(err => {
                 console.log(err)
             })
 
 
-        console.log(this.state)
 
 
     }
@@ -111,32 +113,31 @@ class User extends Component {
 
         return (
             <div>
-                <NavBar/>
-              
-                <div className ="userInfo" style={{"margin-left":"40px"}}>
-                <h1 className="title is-2" >User Profile</h1>
-                {
-                    <ul>
-                        <li>{`UserName: ${this.state.user.username}`}</li>
-                        <li>{` Name: ${this.state.user.name}`}</li>
-                    </ul>
-                }
+                <NavBar tab={'users'} />
+
+                <div className="userInfo" style={{ "margin-left": "40px" }}>
+                    <h1 className="title is-2" >User Profile</h1>
+                    {
+                        <ul>
+                            <li>{`UserName: ${this.state.user.username}`}</li>
+                            <li>{` Name: ${this.state.user.name}`}</li>
+                        </ul>
+                    }
                     <figure class="image is-128x128">
-                     <img src={`${this.state.user.avatar_url}`} />
-                  </figure>
-               
+                        <img src={`${this.state.user.avatar_url}`} />
+                    </figure>
+
                 </div>
                 <div>
                     <div class="tabs is-centered">
                         <ul>
-                            <li class="is-active"><a
+                            <li class={this.state.articlesTab}><a
                                 onClick={() => {
                                     this.endpointChangeHandler('articles')
-
                                 }}
 
                             >Articles</a></li>
-                            <li class="is-active"><a
+                            <li class={this.state.commentsTab}><a
                                 onClick={() => {
                                     this.endpointChangeHandler('comments')
 
@@ -153,7 +154,7 @@ class User extends Component {
                             return b.votes - a.votes
 
                         }).map(post => {
-                            console.log('post', post)
+
                             return <BlogPost postId={post._id} author={post.created_by}
                                 title={post.title} date={post.created_at} votes={post.votes}
                                 comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />
@@ -163,33 +164,40 @@ class User extends Component {
                         :
 
                         this.state.userComments.map(comment => {
-                            return(
-                            <div class="card">
-                                <header class="card-header">
-                                    <p class="card-header-title">
-                                        Comment
+                            return (
+                                <div class="box">
+                                <div class="card" >
+                                    <header class="card-header">
+                                        <p class="card-header-title">
+                                            Comment
                                          </p>
 
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
+                                    </header>
+                                    <div class="card-content">
+                                        <div class="content">
 
-                                    <p>{comment.body}</p>
-                                    <ul>
-
-                                        <li>{comment.created_by}</li>
-                                        <li>{comment.created_at}</li>
-                                        </ul>
-
-
-                                        
+                                            <p>{comment.body}</p>
+                                            <ul>
+                                                <li>{comment.created_by}</li>
+                                                <li>{comment.created_at}</li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                    
+
+                                        <nav class="level">
+
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <Link to={`/article/${comment.belongs_to}`}><button>See Article</button></Link>
+                                                </div>
+                                            </div>
+
+                                        </nav>
+
+                                    
                                 </div>
-                                <footer class="card-footer">
-                                   <Link to={`/article/${comment.belongs_to}`}>See Article</Link>
-                                  
-                                </footer>
-                            </div>
+                                </div>
                             )
 
 
