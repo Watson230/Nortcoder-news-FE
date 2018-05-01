@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Comment from './comment'
 import AddCommentModal from './addCommentModal'
-
+const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
 class CommentFeed extends Component {
 
@@ -39,7 +39,7 @@ class CommentFeed extends Component {
 
     fetchComments = (articleId) => {
 
-        fetch(`http://localhost:4000/api/articles/${articleId}/comments`)
+        fetch(`${API_URL}/articles/${articleId}/comments`)
             .then(res => {
                 return res.json();
             })
