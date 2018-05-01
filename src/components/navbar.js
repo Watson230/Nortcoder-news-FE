@@ -39,7 +39,7 @@ class Navbar extends Component {
                         ><NavLink to={'/topics'}>Topics</NavLink></li>
                         <li class={this.state.articles}
                          
-                        ><NavLink to={'/articles/page/0'}>Articles</NavLink></li>
+                        ><NavLink to={'/articles'}>Articles</NavLink></li>
                         <li class={this.state.users}
                     
                         ><NavLink to={'/users'}>Users</NavLink></li>

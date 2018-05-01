@@ -8,6 +8,8 @@ import commentsFeed from './components/commentsFeed'
 import UserProfile from './components/userProfile'
 import Users from './components/users'
 import ErrorPage from'./components/404'
+import Feed from './components/articleFeed'
+import HomeFeed from './components/homeFeed'
 
 import './App.css';
 
@@ -25,7 +27,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomeFeed} />
             <Route path="/article/:postId" component={Article} />
-            <Route exact path="/articles/page/:pageNumber" component={Feed} />
+            <Route exact path="/articles" component={Feed} />
             <Route path="/articles/:article_id/comments" component={commentsFeed} />
             <Route path="/users/:username" component={UserProfile} />
             <Route path="/article/:article_id" component={Article} />
@@ -39,45 +41,6 @@ class App extends Component {
     );
   }
 }
-
-const HomeFeed = (props) => {
-
-  return (
-    <div>
-      <NavBar tab={'latest'}/>
-      <div style={{ "margin-bottom": "3px" }} class="container">
-        <div class="notification" style={{ "text-aline": "center" }}>
-          <p class="title is-3 ">Most Popular On NorthCoder News</p>
-        </div>
-      </div>
-      <div class="container">
-        <BlogFeed endPoint={'articles/mostPopular'} />
-      </div>
-    </div>
-  )
-}
-
-const Feed = (props) => {
-
-
-  return (
-    <div>
-      <NavBar tab={'articles'}/>
-
-      <div class="container">
-        <div class="notification" style={{ "text-aline": "center" ,"margin-bottom":"20px"}}>
-          <p class="title is-3 ">Northcoder News Articles</p>
-        </div>
-      </div>
-    
-      <div class="box">
-        <BlogFeed endPoint={'articles'}/>
-      </div>
-
-    </div>
-  )
-}
-
 
 
 export default App;
