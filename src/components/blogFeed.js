@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import BlogPost from './blogPost'
 
+const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
+
 
 class BlogFeed extends Component {
 
@@ -12,7 +14,7 @@ class BlogFeed extends Component {
 
     componentDidMount() {
 
-        fetch(`http://localhost:4000/api/${this.props.endPoint}`)
+        fetch(`${API_URL}/${this.props.endPoint}`)
             .then(res => {
                 return res.json();
             })
@@ -31,7 +33,7 @@ class BlogFeed extends Component {
 
     componentWillReceiveProps(nextprops) {
 
-        fetch(`http://localhost:4000/api/${nextprops.endPoint}`)
+        fetch(`${API_URL}/${nextprops.endPoint}`)
             .then(res => {
 
                 if (res.status === 404) {
@@ -63,7 +65,7 @@ class BlogFeed extends Component {
     articleVote = (postId, vote) => {
 
         // map through  blog posts, where id 
-        fetch(`http://localhost:4000/api/articles/${postId}?vote=${vote}`, {
+        fetch(`${API_URL}/articles/${postId}?vote=${vote}`, {
 
             method: "PUT",
             // body: JSON.stringify(`vote=${this.vote}`),

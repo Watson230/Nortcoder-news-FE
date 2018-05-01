@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
-
+const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
 class BlogPost extends Component {
 
@@ -25,7 +25,7 @@ class BlogPost extends Component {
 
     componentWillMount() {
 
-        fetch(`http://localhost:4000/api/articles/${this.props.postId}/comments`)
+        fetch(`${API_URL}/articles/${this.props.postId}/comments`)
             .then(res => {
                 return res.json();
             })

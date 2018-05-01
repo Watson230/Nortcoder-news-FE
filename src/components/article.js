@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import CommentsFeed from './commentsFeed'
 import NavBar from './navbar'
 
+const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 class Article extends Component {
 
     state = {
@@ -15,7 +16,7 @@ class Article extends Component {
     componentWillMount() {
 
         console.log(this.props.match.params)
-        fetch(`http://localhost:4000/api/articles/${this.props.match.params.postId}`)
+        fetch(`${API_URL}/articles/${this.props.match.params.postId}`)
             .then(res => {
                 console.log(res)
                 // if(res.status ===  404 ){

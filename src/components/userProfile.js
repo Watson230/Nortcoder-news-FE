@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import BlogPost from './blogPost'
 import NavBar from './navbar'
-
+const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
 class User extends Component {
 
@@ -17,7 +17,7 @@ class User extends Component {
 
     componentWillMount() {
         console.log('username', this.props.match.params.username)
-        fetch(`http://localhost:4000/api/users/${this.props.match.params.username}`)
+        fetch(`${API_URL}/users/${this.props.match.params.username}`)
             .then(res => {
 
                 // if(res.state === 404)
@@ -45,7 +45,7 @@ class User extends Component {
     componentDidMount() {
 
 
-        fetch(`http://localhost:4000/api/users/${this.props.match.params.username}/${this.state.endpoint}`)
+        fetch(`${API_URL}/users/${this.props.match.params.username}/${this.state.endpoint}`)
             .then(res => {
 
                 return res.json();
@@ -70,7 +70,7 @@ class User extends Component {
 
     endpointChangeHandler = (endpoint) => {
 
-        fetch(`http://localhost:4000/api/users/${this.props.match.params.username}/${endpoint}`)
+        fetch(`${API_URL}/users/${this.props.match.params.username}/${endpoint}`)
             .then(res => {
 
                 return res.json();

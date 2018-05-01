@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import BlogFeed from './blogFeed'
 import BlogPost from './blogPost'
 import NavBar from './navbar'
+const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
+
 
 class TopicFeed extends Component {
 
@@ -18,7 +20,7 @@ class TopicFeed extends Component {
 
     componentDidMount() {
 
-        fetch(`http://localhost:4000/api/topics`)
+        fetch(`${API_URL}/topics`)
             .then(res => {
 
                 return res.json();
