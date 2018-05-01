@@ -19,7 +19,7 @@ class CommentFeed extends Component {
         let articleId
         if (!this.props.match) articleId = this.props.postId
         else articleId = this.props.match.params.article_id
-        fetch(`http://localhost:4000/api/articles/${articleId}/comments`)
+        fetch(`${API_URL}/articles/${articleId}/comments`)
             .then(res => {
                 return res.json();
             })
@@ -67,7 +67,7 @@ class CommentFeed extends Component {
 
     commentVoteHandler = (commentId, vote) => {
 
-        fetch(`http://localhost:4000/api/comments/${commentId}?vote=${vote}`, {
+        fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
 
             method: "PUT",
             type: 'cors'
@@ -109,7 +109,7 @@ class CommentFeed extends Component {
             if (!comment._id === commentId) return comment
         })
 
-        fetch(`http://localhost:4000/api/comments/${commentId}`, {
+        fetch(`${API_URL}/comments/${commentId}`, {
             method: 'DELETE',
             type: 'cors'
         })
