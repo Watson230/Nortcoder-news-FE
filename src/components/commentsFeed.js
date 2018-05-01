@@ -72,7 +72,6 @@ class CommentFeed extends Component {
             method: "PUT",
             type: 'cors'
 
-
         })
             .then(res => {
 
@@ -86,8 +85,6 @@ class CommentFeed extends Component {
                     if (comment._id === body._id) return body
                     else return comment
                 })
-
-
 
                 this.setState({
 

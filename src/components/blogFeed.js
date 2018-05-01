@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import BlogPost from './blogPost'
 
-const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
+const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 
 
 class BlogFeed extends Component {
@@ -63,15 +63,41 @@ class BlogFeed extends Component {
 
 
     articleVote = (postId, vote) => {
+        let newState
+        if (vote === 'up') {
+            newState = this.state.blogPosts.map((article, i) => {
+               
+                if (article._id === postId) {
+                    
+                    article.votes++
+                   
+                    return article
+                }
+                else return article
+            })
+
+        }
+
+        if (vote === 'down') {
+            newState = this.state.blogPosts.map((article, i) => {
+
+                if (article._id === postId) {
+                    article.votes = article.votes - 1
+                    return article
+                }
+                else return article
+            })
+
+
+        }
+        this.setState({
+            blogPosts: newState
+        }, )
 
         // map through  blog posts, where id 
         fetch(`${API_URL}/articles/${postId}?vote=${vote}`, {
 
             method: "PUT",
-            // body: JSON.stringify(`vote=${this.vote}`),
-            // headers: new Headers({
-            //     'Content-Type': 'application/json'
-            //   }),
             type: 'cors'
 
 
@@ -81,26 +107,13 @@ class BlogFeed extends Component {
                 return res.json();
             })
             .then(body => {
-                     console.log(body)
-
-                let newState = this.state.blogPosts.map((article, i) => {
-
-                    if (article._id === body._id) return body
-                    else return article
-                })
+                console.log(body)
 
 
 
-                this.setState({
-
-                    blogPosts: newState
-
-                })
-            })
-            .catch(err => {
+            }).catch(err => {
                 console.log(err)
             })
-
     }
 
 
@@ -110,18 +123,18 @@ class BlogFeed extends Component {
         return (
             <div >
 
-                
-                <div  class="box" style={{ "width": "100%" }}>
+
+                <div class="box" style={{ "width": "100%" }}>
 
 
                     {this.state.blogPosts.sort((a, b) => {
                         return b.votes - a.votes
-                    }).map((post,i) => {
-                            
+                    }).map((post, i) => {
+
                         return <div><BlogPost postId={post._id} author={post.created_by}
                             title={post.title} date={post.created_at} votes={post.votes}
                             comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />
-                            </div>
+                        </div>
 
                     })}
                 </div>
