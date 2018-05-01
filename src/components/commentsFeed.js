@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Comment from './comment'
 import AddCommentModal from './addCommentModal'
-const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
+const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 
 class CommentFeed extends Component {
 
@@ -67,6 +67,40 @@ class CommentFeed extends Component {
 
     commentVoteHandler = (commentId, vote) => {
 
+        let newState
+
+        if (vote === 'up') {
+            newState = this.state.comments.map((comment, i) => {
+
+                if (comment._id === commentId) {
+                    comment.votes++
+                    return comment
+                }
+                else return comment
+            })
+
+        }
+
+        if (vote === 'down') {
+            newState = this.state.comments.map((comment, i) => {
+
+                if (comment._id === commentId) {
+                    comment.votes= comment.votes -1
+                    return comment
+                }
+                else return comment
+            })
+
+        }
+
+        this.setState({
+
+            comments: newState,
+            commentflag: 0,
+            newComment: '',
+            articleId: this.state.articleId
+        })
+
         fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
 
             method: "PUT",
@@ -79,20 +113,7 @@ class CommentFeed extends Component {
             })
             .then(body => {
                 console.log(body)
-
-                let newState = this.state.comments.map((comment, i) => {
-
-                    if (comment._id === body._id) return body
-                    else return comment
-                })
-
-                this.setState({
-
-                    comments: newState,
-                    commentflag: 0,
-                    newComment: '',
-                    articleId: this.state.articleId
-                })
+            
             })
             .catch(err => {
                 console.log(err)

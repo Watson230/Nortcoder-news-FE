@@ -94,7 +94,7 @@ class BlogFeed extends Component {
             blogPosts: newState
         }, )
 
-        // map through  blog posts, where id 
+       
         fetch(`${API_URL}/articles/${postId}?vote=${vote}`, {
 
             method: "PUT",
