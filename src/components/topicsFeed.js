@@ -8,10 +8,10 @@ class TopicFeed extends Component {
     state = {
         topics: [],
         currentTopic: '',
-        loaded:false,
-        coding:"is-active",
-        cooking:"",
-        football:''
+        loaded: false,
+        coding: "is-active",
+        cooking: "",
+        football: ''
 
     }
 
@@ -29,7 +29,7 @@ class TopicFeed extends Component {
 
                     topics: body,
                     currentTopic: body[0].slug,
-                    loaded:true
+                    loaded: true
 
                 })
             })
@@ -39,48 +39,48 @@ class TopicFeed extends Component {
             })
     }
 
-   
 
 
-  
 
-    tabChangerHandeler =(activeTab)=>{
-        if(activeTab === 'coding'){
+
+
+    tabChangerHandeler = (activeTab) => {
+        if (activeTab === 'coding') {
 
             this.setState({
-                topics:this.state.topics,
+                topics: this.state.topics,
                 currentTopic: activeTab,
-                loaded:true,
-                coding:"is-active",
-                cooking:'',
-                football:''
+                loaded: true,
+                coding: "is-active",
+                cooking: '',
+                football: ''
 
 
             })
         }
-        if(activeTab === 'cooking'){
+        if (activeTab === 'cooking') {
 
             this.setState({
-                topics:this.state.topics,
+                topics: this.state.topics,
                 currentTopic: activeTab,
-                loaded:true,
-                coding:"",
-                cooking:"is-active",
-                football:''
+                loaded: true,
+                coding: "",
+                cooking: "is-active",
+                football: ''
 
 
             })
         }
 
-        if(activeTab === 'football'){
+        if (activeTab === 'football') {
 
             this.setState({
-                topics:this.state.topics,
+                topics: this.state.topics,
                 currentTopic: activeTab,
-                loaded:true,
-                coding:"",
-                cooking:"",
-                football:"is-active"
+                loaded: true,
+                coding: "",
+                cooking: "",
+                football: "is-active"
 
 
             })
@@ -91,11 +91,11 @@ class TopicFeed extends Component {
 
     render() {
 
-        if(!this.state.loaded) return null
+        if (!this.state.loaded) return null
 
         return (
             <div>
-                <NavBar tab={'topics'}/>
+                <NavBar tab={'topics'} />
                 <div class="container">
                     <div class="notification" style={{ "text-aline": "center" }}>
                         <p class="title is-3 ">Northcoder News Topics</p>
@@ -105,11 +105,11 @@ class TopicFeed extends Component {
                 <div class="tabs is-centered">
                     <ul>
                         {this.state.topics.map(topic => {
-                            console.log(topic)
+
                             return <li class={this.state[topic.slug]}
                                 onClick={() => {
 
-                                    
+
                                     this.tabChangerHandeler(topic.slug)
                                 }
                                 }
@@ -121,54 +121,20 @@ class TopicFeed extends Component {
 
 
                 <div class="container">
-                    {/* <Feed currentTopic ={this.state.currentTopic} pageNum={this.state.pageNum} pageChangeHandler={this.pageChangeHandler}/> */}
 
-                    {/* <div style={{"margin":"auto"}}> <button class="button is-medium" onClick={this.pageChangeHandler}>Prev Page</button>   <button class="button is-medium" onClick={this.pageChangeHandler}> Next Page</button></div> */}
-
-                  
-
-                            
                     <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`} />
 
-                    <div style={{ "text-align": "center" , "margin-top":"20px","margin-bottom":"20px"}}>
-                        <div class="container" style={{ "width": "1000px", "text-align": "center" }}>
-                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Page</button>
-
-                            <span class="title is-4"> {`Page ${parseInt(this.state.pageNum) + 1}`}</span>
-
-                            <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Page</button>
-                        </div>
-                    </div>
                 </div>
-
-
 
             </div>
         )
     }
 }
 
-const Feed = (props) => {
-    let pageNumber = props.pageNumber
 
 
-    return (
-        <div>
 
 
-            <div>
-                <button>Prev Page</button>
-                <h2> {`Page ${pageNumber}`}</h2>
-                <button
-                    onClick={props.pageChangeHandler}
-                >Next Page</button>
-                <BlogFeed endPoint={`topics/${props.currentTopic}/articles`} pageNum={pageNumber} />
-            </div>
-        </div>
-    )
-
-
-}
 
 
 
