@@ -2,7 +2,7 @@ import React from 'react';
 import BlogFeed from './blogFeed';
 import NavBar from './navbar';
 
-const HomeFeed = (p) => {
+const HomeFeed = () => {
 
   return (
     <div>

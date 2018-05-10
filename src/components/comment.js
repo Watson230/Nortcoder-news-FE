@@ -15,21 +15,21 @@ class Comment extends Component {
 
     render() {
         return (
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        <h1 class="title is-5">Comment</h1>
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                        <h1 className="title is-5">Comment</h1>
                     </p>
 
-                    <div class="card-header-item" style={{ "display": "inline-block", "margin-top": "5px" }}>
+                    <div className="card-header-item" style={{ "display": "inline-block", "margin-top": "5px" }}>
 
                         <div style={{ "float": "left", "margin-top": "30px" }}>
-                            <p class="title is-5">{`Votes:${this.props.votes}`}</p>
+                            <p className="title is-5">{`Votes:${this.props.votes}`}</p>
                         </div>
 
                         <div style={{ "textAlign": "center", "float": "left", "margin-right": "10px", "margin-left": "10px" }}>
                             {this.state.votedUp ? <div>
-                                <button  class="button is-success" disabled > + </button>
+                                <button  className="button is-success" disabled > + </button>
 
                             </div> :
                                 <div>
@@ -40,12 +40,12 @@ class Comment extends Component {
                                             votedUp: true
                                         })
                                     }}
-                                       class="button is-success" > + </button>
+                                       className="button is-success" > + </button>
                                 </div>
 
                             }
                             {this.state.votedDown ? <div>
-                                <button style={{ "margin-top": "10px", "margin-bottom": "10px" }} class="button is-danger" disabled > + </button>
+                                <button style={{ "margin-top": "10px", "margin-bottom": "10px" }} className="button is-danger" disabled > + </button>
                             </div> :
                                 <div>
                                     <button onClick={() => {
@@ -55,7 +55,7 @@ class Comment extends Component {
                                             votedUp: false
                                         })
                                     }}
-                                        style={{ "margin-top": "10px", "margin-bottom": "10px" }} class="button is-danger"> - </button>
+                                        style={{ "margin-top": "10px", "margin-bottom": "10px" }} className="button is-danger"> - </button>
                                 </div>
                             }
                         </div>
@@ -63,8 +63,8 @@ class Comment extends Component {
                     </div>
 
                 </header>
-                <div class="card-content">
-                    <div class="content">
+                <div className="card-content">
+                    <div className="content">
                         {this.props.text}
 
                         <ul>
@@ -77,7 +77,7 @@ class Comment extends Component {
                         <br />
                         {this.props.createdBy === 'northcoder' ? <div>
 
-                            <button class="button is-danger is-rounded is-medium"
+                            <button className="button is-danger is-rounded is-medium"
                                 onClick={() => {
                                     console.log('delete comment')
                                     this.props.deleteComment(this.props.Id)
@@ -90,8 +90,8 @@ class Comment extends Component {
 
                     </div>
                 </div>
-                <footer class="card-footer">
-                    <Link class="card-footer-item" to={`/users/${this.props.createdBy}`} class="card-footer-item">{`${this.props.createdBy}'s profile`}</Link>
+                <footer className="card-footer">
+                    <Link className="card-footer-item" to={`/users/${this.props.createdBy}`} className="card-footer-item">{`${this.props.createdBy}'s profile`}</Link>
 
                 </footer>
             </div>

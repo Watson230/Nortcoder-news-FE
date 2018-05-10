@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import BlogPost from './blogPost'
 import NavBar from './navbar'
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
@@ -16,11 +16,10 @@ class User extends Component {
 
 
     componentWillMount() {
-        console.log('username', this.props.match.params.username)
+       
         fetch(`${API_URL}/users/${this.props.match.params.username}`)
             .then(res => {
 
-                // if(res.state === 404)
                 return res.json();
             })
             .then(body => {
@@ -90,7 +89,6 @@ class User extends Component {
                 }
                 else {
                     this.setState({
-
                         user: this.state.user,
                         userArticles: body,
                         userComments: [],
@@ -126,21 +124,21 @@ class User extends Component {
                             <li>{` Name: ${this.state.user.name}`}</li>
                         </ul>
                     }
-                    <figure class="image is-128x128">
+                    <figure className="image is-128x128">
                         <img src={`${this.state.user.avatar_url}`} />
                     </figure>
 
                 </div>
                 <div>
-                    <div class="tabs is-centered">
+                    <div className="tabs is-centered">
                         <ul>
-                            <li class={this.state.articlesTab}><a
+                            <li className={this.state.articlesTab}><a
                                 onClick={() => {
                                     this.endpointChangeHandler('articles')
                                 }}
 
                             >Articles</a></li>
-                            <li class={this.state.commentsTab}><a
+                            <li className={this.state.commentsTab}><a
                                 onClick={() => {
                                     this.endpointChangeHandler('comments')
 
@@ -168,16 +166,16 @@ class User extends Component {
 
                         this.state.userComments.map(comment => {
                             return (
-                                <div class="box">
-                                <div class="card" >
-                                    <header class="card-header">
-                                        <p class="card-header-title">
+                                <div className="box">
+                                <div className="card" >
+                                    <header className="card-header">
+                                        <p className="card-header-title">
                                             Comment
                                          </p>
 
                                     </header>
-                                    <div class="card-content">
-                                        <div class="content">
+                                    <div className="card-content">
+                                        <div className="content">
 
                                             <p>{comment.body}</p>
                                             <ul>
@@ -185,12 +183,10 @@ class User extends Component {
                                                 <li>{comment.created_at}</li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                   
+                                        <nav className="level">
 
-                                        <nav class="level">
-
-                                            <div class="level-item has-text-centered">
+                                            <div className="level-item has-text-centered">
                                                 <div>
                                                     <Link to={`/article/${comment.belongs_to}`}><button>See Article</button></Link>
                                                 </div>

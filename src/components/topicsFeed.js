@@ -98,23 +98,20 @@ class TopicFeed extends Component {
         return (
             <div>
                 <NavBar tab={'topics'} />
-                <div class="container">
-                    <div class="notification" style={{ "text-aline": "center" }}>
-                        <p class="title is-3 ">Northcoder News Topics</p>
+                <div className="container">
+                    <div className="notification" style={{ "text-aline": "center" }}>
+                        <p className="title is-3 ">Northcoder News Topics</p>
                     </div>
                 </div>
 
-                <div class="tabs is-centered">
+                <div className="tabs is-centered">
                     <ul>
                         {this.state.topics.map(topic => {
 
-                            return <li class={this.state[topic.slug]}
+                            return <li className={this.state[topic.slug]}
                                 onClick={() => {
-
-
                                     this.tabChangerHandeler(topic.slug)
-                                }
-                                }
+                                }}
                             ><a>{topic.title}</a></li>
                         })}
                     </ul>
@@ -122,7 +119,7 @@ class TopicFeed extends Component {
                 </div>
 
 
-                <div class="container">
+                <div className="container">
 
                     <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`} />
 

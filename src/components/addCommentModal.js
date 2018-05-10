@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 
 class AddCommentModal extends Component {
 
@@ -8,6 +9,7 @@ class AddCommentModal extends Component {
         articleId: this.props.articleId
 
     }
+    
 
     commentInputHandler = (event) => {
 
@@ -24,7 +26,7 @@ class AddCommentModal extends Component {
     addNewComment = () => {
 
         let commentPost = { comment: this.state.newComment }
-        fetch(`http://localhost:4000/api/articles/${this.state.articleId}/comments`, {
+        fetch(`${API_URL}/articles/${this.state.articleId}/comments`, {
 
             method: 'POST',
             body: JSON.stringify(commentPost),
@@ -45,26 +47,26 @@ class AddCommentModal extends Component {
     render() {
         console.log(this.props)
         return (
-            <div class="modal is-active">
-                <div class="modal-background"></div>
-                <div class="modal-card">
+            <div className="modal is-active">
+                <div className="modal-background"></div>
+                <div className="modal-card">
 
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Add Comment</p>
-                        <button onClick={() => { this.props.addCommentButtonHandler(0) }} class="delete" aria-label="close"></button>
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Add Comment</p>
+                        <button onClick={() => { this.props.addCommentButtonHandler(0) }} className="delete" aria-label="close"></button>
                     </header>
 
-                    <section class="modal-card-body">
-                        {<div class="field">
-                            <label class="label">Comment</label>
-                            <div class="field">
-                                <label class="label">Name</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Text input" value={'northcoder'} />
+                    <section className="modal-card-body">
+                        {<div className="field">
+                            <label className="label">Comment</label>
+                            <div className="field">
+                                <label className="label">Name</label>
+                                <div className="control">
+                                    <input className="input" type="text" placeholder="Text input" value={'northcoder'} />
                                 </div>
                             </div>
-                            <div class="control">
-                                <textarea class="input" class="textarea" placeholder="Textarea" value={`${this.state.newComment}`} onChange={event => {
+                            <div className="control">
+                                <textarea className="input" className="textarea" placeholder="Textarea" value={`${this.state.newComment}`} onChange={event => {
                                     console.log(event.target.value)
                                     this.commentInputHandler(event)
                                 }}></textarea>
@@ -72,8 +74,8 @@ class AddCommentModal extends Component {
                         </div>}
                     </section>
 
-                    <footer class="modal-card-foot">
-                        <button class="button is-success"
+                    <footer className="modal-card-foot">
+                        <button className="button is-success"
                             onClick={() => {
                                 this.addNewComment();
                                 this.props.addCommentButtonHandler(0);
@@ -81,7 +83,7 @@ class AddCommentModal extends Component {
                             }}
 
                         >Submit</button>
-                        <button class="button"
+                        <button className="button"
                             onClick={() => { this.props.addCommentButtonHandler(0) }}
 
                         >Cancel</button>

@@ -17,30 +17,30 @@ class Navbar extends Component {
     render() {
         return (
             <div>
-                <Link to={"/"}><section class="hero is-danger">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
+                <Link to={"/"}><section className="hero is-danger">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title">
                                 NorthCoder News
                         </h1>
-                            <h2 class="subtitle">
+                            <h2 className="subtitle">
                                 News for Northcoders in the North
                         </h2>
                         </div>
                     </div>
                 </section></Link>
-                <div class="tabs" style={{ "margin-bottom": "20px" }}>
+                <div className="tabs" style={{ "margin-bottom": "20px" }}>
                     <ul>
-                        <li class={this.state.latest}
+                        <li className={this.state.latest}
                       
                         ><NavLink to={'/'}>Latest</NavLink></li>
-                        <li class={this.state.topics}
+                        <li className={this.state.topics}
                          
                         ><NavLink to={'/topics'}>Topics</NavLink></li>
-                        <li class={this.state.articles}
+                        <li className={this.state.articles}
                          
                         ><NavLink to={'/articles'}>Articles</NavLink></li>
-                        <li class={this.state.users}
+                        <li className={this.state.users}
                     
                         ><NavLink to={'/users'}>Users</NavLink></li>
                     </ul>

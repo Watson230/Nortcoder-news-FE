@@ -124,7 +124,7 @@ class BlogFeed extends Component {
             <div >
 
 
-                <div class="box" style={{ "width": "100%" }}>
+                <div className="box" style={{ "width": "100%" }}>
 
 
                     {this.state.blogPosts.sort((a, b) => {

@@ -60,22 +60,22 @@ class Article extends Component {
                     </div>
                 </div> */}
 
-                <div class="container" >
-                <div class="card" style={{ "margin-top": "10px" }}>
-                    <header class="card-header">
+                <div className="container" >
+                <div className="card" style={{ "margin-top": "10px" }}>
+                    <header className="card-header">
                         <div style={{ "margin-bottom": "10px" ,"margin-top": "10px","margin-left": "10px" }}>
                             <div>
-                                <p className="card-header-title" className="title is-2">
+                                <p classNameName="card-header-title" classNameName="title is-2">
                                     {this.state.article.title}
                                 </p>
                             </div>
                             <div>
-                                <h2 class="subtitle is-3"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
+                                <h2 className="subtitle is-3"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
                             </div>
                         </div>
                     </header>
-                    <div class="card-content">
-                        <div class="content">
+                    <div className="card-content">
+                        <div className="content">
                             {this.state.article.body}
 
                             <br />
@@ -91,15 +91,15 @@ class Article extends Component {
                             </div>
                         </div>
                     </div>
-                    <footer class="card-footer">
-                        <Link to={`/users/${this.state.article.created_by}`} class="card-footer-item">{`${this.state.article.created_by}'s profile`}</Link>
+                    <footer className="card-footer">
+                        <Link to={`/users/${this.state.article.created_by}`} className="card-footer-item">{`${this.state.article.created_by}'s profile`}</Link>
 
                     </footer>
 
                 </div>
                 </div>
 
-                <div class="box">
+                <div className="box">
                 <CommentsFeed postId={this.props.match.params.postId} />
 
                 </div>

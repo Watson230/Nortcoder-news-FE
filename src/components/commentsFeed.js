@@ -11,7 +11,6 @@ class CommentFeed extends Component {
         commentflag: 0,
         newComment: '',
         articleId: ''
-
     }
 
 
@@ -147,20 +146,14 @@ class CommentFeed extends Component {
             })
     }
 
-
-
-
-
-
-
     render() {
 
         return (
-            <div class="container">
+            <div className="container">
                 <div className="comments" style={{ "width": "100%" }}>
 
                     <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
-                        <button class="button is-medium" onClick={(e) => {
+                        <button className="button is-medium" onClick={(e) => {
                             e.preventDefault()
                             console.log('button press')
                             this.addCommentButtonHandler(1)
@@ -184,7 +177,7 @@ class CommentFeed extends Component {
 
 
                     <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
-                        <button class="button is-medium" onClick={(e) => {
+                        <button className="button is-medium" onClick={(e) => {
                             e.preventDefault()
                             console.log('button press')
                             this.addCommentButtonHandler(1)
