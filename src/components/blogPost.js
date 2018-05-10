@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import {getArticleComments} from '../api'
 
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
@@ -25,10 +26,7 @@ class BlogPost extends Component {
 
     componentWillMount() {
 
-        fetch(`${API_URL}/articles/${this.props.postId}/comments`)
-            .then(res => {
-                return res.json();
-            })
+            getArticleComments(this.props.postId)
             .then(body => {
 
                 this.setState({
@@ -171,12 +169,7 @@ class BlogPost extends Component {
         
         
         }
-        
-        
-        
-        
-        
-        
+       
         export default BlogPost
         
         

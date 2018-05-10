@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import BlogPost from './blogPost'
 import NavBar from './navbar'
+import {getUserByID, getUserActivity}from '../api'
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
 class User extends Component {
@@ -16,12 +17,8 @@ class User extends Component {
 
 
     componentWillMount() {
-       
-        fetch(`${API_URL}/users/${this.props.match.params.username}`)
-            .then(res => {
 
-                return res.json();
-            })
+            getUserByID(this.props.match.params.username)
             .then(body => {
 
                 this.setState({
@@ -42,13 +39,8 @@ class User extends Component {
     }
 
     componentDidMount() {
-
-
-        fetch(`${API_URL}/users/${this.props.match.params.username}/${this.state.endpoint}`)
-            .then(res => {
-
-                return res.json();
-            })
+       
+            getUserActivity(this.props.match.params.username,this.state.endpoint)
             .then(body => {
 
                 this.setState({
@@ -69,11 +61,7 @@ class User extends Component {
 
     endpointChangeHandler = (endpoint) => {
 
-        fetch(`${API_URL}/users/${this.props.match.params.username}/${endpoint}`)
-            .then(res => {
-
-                return res.json();
-            })
+        getUserActivity(this.props.match.params.username,endpoint)
             .then(body => {
 
                 if (endpoint === 'comments') {

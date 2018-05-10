@@ -31,18 +31,10 @@ class Navbar extends Component {
                 </section></Link>
                 <div className="tabs" style={{ "margin-bottom": "20px" }}>
                     <ul>
-                        <li className={this.state.latest}
-                      
-                        ><NavLink to={'/'}>Latest</NavLink></li>
-                        <li className={this.state.topics}
-                         
-                        ><NavLink to={'/topics'}>Topics</NavLink></li>
-                        <li className={this.state.articles}
-                         
-                        ><NavLink to={'/articles'}>Articles</NavLink></li>
-                        <li className={this.state.users}
-                    
-                        ><NavLink to={'/users'}>Users</NavLink></li>
+                        <li className={this.state.latest}><NavLink to={'/'}>Latest</NavLink></li>
+                        <li className={this.state.topics}><NavLink to={'/topics'}>Topics</NavLink></li>
+                        <li className={this.state.articles} ><NavLink to={'/articles'}>Articles</NavLink></li>
+                        <li className={this.state.users}><NavLink to={'/users'}>Users</NavLink></li>
                     </ul>
                 </div>
             </div>

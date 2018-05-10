@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import BlogPost from './blogPost'
+import{voteArticle,getFetchRequest} from '../api'
 
 const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 
@@ -14,10 +15,7 @@ class BlogFeed extends Component {
 
     componentDidMount() {
 
-        fetch(`${API_URL}/${this.props.endPoint}`)
-            .then(res => {
-                return res.json();
-            })
+            getFetchRequest(`${this.props.endPoint}`)
             .then(body => {
 
                 this.setState({
@@ -32,15 +30,7 @@ class BlogFeed extends Component {
     }
 
     componentWillReceiveProps(nextprops) {
-
-        fetch(`${API_URL}/${nextprops.endPoint}`)
-            .then(res => {
-
-                if (res.status === 404) {
-                    throw new Error('Content does not exist')
-                }
-                return res.json();
-            })
+        getFetchRequest(`${nextprops.endPoint}`)
             .then(body => {
 
                 if (body.count === 0) {
@@ -58,9 +48,6 @@ class BlogFeed extends Component {
                 console.log(err)
             })
     }
-
-
-
 
     articleVote = (postId, vote) => {
         let newState
@@ -88,44 +75,24 @@ class BlogFeed extends Component {
                 else return article
             })
 
-
         }
         this.setState({
             blogPosts: newState
         }, )
 
        
-        fetch(`${API_URL}/articles/${postId}?vote=${vote}`, {
-
-            method: "PUT",
-            type: 'cors'
-
-
-        })
-            .then(res => {
-
-                return res.json();
-            })
+        voteArticle(postId,vote)
             .then(body => {
                 console.log(body)
-
-
-
             }).catch(err => {
                 console.log(err)
             })
     }
 
-
-
-
     render() {
         return (
             <div >
-
-
                 <div className="box" style={{ "width": "100%" }}>
-
 
                     {this.state.blogPosts.sort((a, b) => {
                         return b.votes - a.votes

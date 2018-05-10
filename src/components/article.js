@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import CommentsFeed from './commentsFeed'
 import NavBar from './navbar'
+import {getArticleByID} from '../api'
 
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 class Article extends Component {
@@ -14,26 +15,13 @@ class Article extends Component {
     }
 
     componentWillMount() {
-
-        console.log(this.props.match.params)
-        fetch(`${API_URL}/articles/${this.props.match.params.postId}`)
-            .then(res => {
-                console.log(res)
-                // if(res.status ===  404 ){
-                //     throw new Error('Content does not exist')
-                // }
-                return res.json();
-            })
+            getArticleByID(this.props.match.params.postId)
             .then(body => {
-                console.log('articles',body)
                 this.setState({
-
                     article: body[0]
-
                 })
             })
             .catch(err => {
-
                 console.log(err)
                 this.props.history.push('/404')
 
@@ -51,16 +39,7 @@ class Article extends Component {
             <div>
                 <NavBar />
 
-                {/* <div className="article NavButtons" style={{ "text-align": "center" }} >
-                    <div class="container" style={{ "width": "1000px", "text-align": "center", "margin-bottom": "20px" }}>
-                        <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-right": "20px" }} >Prev Article</button>
-
-
-                        <button class="button is-medium" onClick={this.pageChangeHandler} style={{ "margin-left": "20px" }} >Next Article</button>
-                    </div>
-                </div> */}
-
-                <div className="container" >
+              <div className="container" >
                 <div className="card" style={{ "margin-top": "10px" }}>
                     <header className="card-header">
                         <div style={{ "margin-bottom": "10px" ,"margin-top": "10px","margin-left": "10px" }}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import NavBar from './navbar'
+import {getUsers} from '../api'
 
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
@@ -13,15 +14,7 @@ class Users extends Component {
     }
 
     componentWillMount() {
-
-        fetch(`${API_URL}/users`)
-            .then(res => {
-                console.log(res)
-                // if(res.status ===  404 ){
-                //     throw new Error('Content does not exist')
-                // }
-                return res.json();
-            })
+            getUsers()
             .then(body => {
                 console.log(body)
                 this.setState({

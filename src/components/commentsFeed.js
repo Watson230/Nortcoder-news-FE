@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Comment from './comment'
 import AddCommentModal from './addCommentModal'
+import {voteComment, deleteComment,getArticleComments} from '../api'
 const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 
 class CommentFeed extends Component {
@@ -18,10 +19,8 @@ class CommentFeed extends Component {
         let articleId
         if (!this.props.match) articleId = this.props.postId
         else articleId = this.props.match.params.article_id
-        fetch(`${API_URL}/articles/${articleId}/comments`)
-            .then(res => {
-                return res.json();
-            })
+       
+        getArticleComments(articleId)
             .then(body => {
                 console.log(body)
                 this.setState({
@@ -38,10 +37,7 @@ class CommentFeed extends Component {
 
     fetchComments = (articleId) => {
 
-        fetch(`${API_URL}/articles/${articleId}/comments`)
-            .then(res => {
-                return res.json();
-            })
+        getArticleComments(articleId)
             .then(body => {
                 console.log(body)
                 this.setState({
@@ -100,16 +96,8 @@ class CommentFeed extends Component {
             articleId: this.state.articleId
         })
 
-        fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
 
-            method: "PUT",
-            type: 'cors'
-
-        })
-            .then(res => {
-
-                return res.json();
-            })
+            voteComment(commentId, vote)
             .then(body => {
                 console.log(body)
             
@@ -126,13 +114,7 @@ class CommentFeed extends Component {
             if (!comment._id === commentId) return comment
         })
 
-        fetch(`${API_URL}/comments/${commentId}`, {
-            method: 'DELETE',
-            type: 'cors'
-        })
-            .then(res => {
-                return res.json();
-            })
+            deleteComment(commentId)
             .then(body => {
                 console.log(body)
                 this.setState({

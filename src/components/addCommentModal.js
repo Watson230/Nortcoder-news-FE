@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {postComment} from '../api';
 
 const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 
@@ -12,40 +13,23 @@ class AddCommentModal extends Component {
     
 
     commentInputHandler = (event) => {
-
         this.setState({
-
-          
             newComment: event.target.value,
             articleId: this.props.articleId
-
-
         })
     }
 
+
     addNewComment = () => {
-
         let commentPost = { comment: this.state.newComment }
-        fetch(`${API_URL}/articles/${this.state.articleId}/comments`, {
-
-            method: 'POST',
-            body: JSON.stringify(commentPost),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            type: 'cors'
-
-        }).then(res => res.json())
-
-            .then(comment => console.log(comment))
-
-            .catch(err => {
-                console.log(err)
-            })
+        let articleId = this.state.articleId
+        postComment(articleId,commentPost)
+        .catch( err =>{
+            console.log(err)
+        })
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="modal is-active">
                 <div className="modal-background"></div>
