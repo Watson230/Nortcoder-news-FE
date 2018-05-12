@@ -37,53 +37,29 @@ class TopicFeed extends Component {
             })
     }
 
-
-
-
-
-
     tabChangerHandeler = (activeTab) => {
+
+        const newState = {
+            topics: this.state.topics,
+            currentTopic: activeTab,
+            loaded: true,
+            coding: '',
+            cooking: '',
+            football: ''
+        }
+
         if (activeTab === 'coding') {
-
-            this.setState({
-                topics: this.state.topics,
-                currentTopic: activeTab,
-                loaded: true,
-                coding: "is-active",
-                cooking: '',
-                football: ''
-
-
-            })
+            newState.coding = "is-active";
         }
         if (activeTab === 'cooking') {
-
-            this.setState({
-                topics: this.state.topics,
-                currentTopic: activeTab,
-                loaded: true,
-                coding: "",
-                cooking: "is-active",
-                football: ''
-
-
-            })
+            newState.cooking = "is-active";
         }
 
         if (activeTab === 'football') {
-
-            this.setState({
-                topics: this.state.topics,
-                currentTopic: activeTab,
-                loaded: true,
-                coding: "",
-                cooking: "",
-                football: "is-active"
-
-
-            })
+            newState.football = "is-active";
         }
 
+        this.setState(newState);
     }
 
 
@@ -111,14 +87,10 @@ class TopicFeed extends Component {
                             ><a>{topic.title}</a></li>
                         })}
                     </ul>
-
                 </div>
 
-
                 <div className="container">
-
-                    <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`} />
-
+                    <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`}/>
                 </div>
 
             </div>
