@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom'
 
 import Article from './components/article'
-import Topics from './components/topicsFeed'
+import ArticlesByTopics from './components/articlesByTopic'
 import NavBar from './components/navbar'
 import commentsFeed from './components/commentsFeed'
 import UserProfile from './components/userProfile'
@@ -32,7 +32,7 @@ class App extends Component {
             <Route path="/users/:username" component={UserProfile} />
             <Route path="/article/:article_id" component={Article} />
             <Route path="/users" component={Users} />
-            <Route path="/topics" component={Topics} />
+            <Route path="/topics" component={ArticlesByTopics} />
             <Route path="/404" component={ErrorPage} />
             <Route component={ErrorPage}/>
           </Switch>
