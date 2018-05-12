@@ -17,11 +17,8 @@ class BlogFeed extends Component {
 
             getFetchRequest(`${this.props.endPoint}`)
             .then(body => {
-
                 this.setState({
-
                     blogPosts: body
-
                 })
             })
             .catch(err => {
@@ -51,31 +48,19 @@ class BlogFeed extends Component {
 
     articleVote = (postId, vote) => {
         let newState
-        if (vote === 'up') {
+        let voteInc
+        if (vote === 'up') voteInc=1
+        if (vote === 'down') voteInc=-1   
+        
             newState = this.state.blogPosts.map((article, i) => {
                
-                if (article._id === postId) {
-                    
-                    article.votes++
-                   
-                    return article
+                if (article._id === postId) {               
+                    article.votes= article.votes + voteInc                             
                 }
-                else return article
+              return article
             })
 
-        }
-
-        if (vote === 'down') {
-            newState = this.state.blogPosts.map((article, i) => {
-
-                if (article._id === postId) {
-                    article.votes = article.votes - 1
-                    return article
-                }
-                else return article
-            })
-
-        }
+        
         this.setState({
             blogPosts: newState
         }, )
