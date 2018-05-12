@@ -9,7 +9,7 @@ import UserProfile from './components/userProfile'
 import Users from './components/users'
 import ErrorPage from'./components/404'
 import AllArticles from './components/allArticles'
-import HomeFeed from './components/homeFeed'
+import HomePage from './components/homePage'
 
 import './App.css';
 
@@ -20,11 +20,9 @@ class App extends Component {
   }
   render() {
     return (
-      
-    
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={HomeFeed} />
+            <Route exact path="/" component={HomePage} />
             <Route path="/article/:postId" component={Article} />
             <Route exact path="/articles" component={AllArticles} />
             <Route path="/articles/:article_id/comments" component={commentsFeed} />
