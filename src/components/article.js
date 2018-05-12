@@ -37,14 +37,14 @@ class Article extends Component {
         return (
 
             <div>
-                <NavBar />
+                <NavBar tab={'articles'} />
 
-              <div className="container" >
+              <div className="box" >
                 <div className="card" style={{ "margin-top": "10px" }}>
                     <header className="card-header">
                         <div style={{ "margin-bottom": "10px" ,"margin-top": "10px","margin-left": "10px" }}>
                             <div>
-                                <p classNameName="card-header-title" classNameName="title is-2">
+                                <p className="card-header-title" className="title is-2">
                                     {this.state.article.title}
                                 </p>
                             </div>
@@ -62,8 +62,9 @@ class Article extends Component {
                                 <ul>
                                     <li><Link to={`/users/${this.state.article.created_by}`}>{`Created_By: ${this.state.article.created_by ? this.state.article.created_by : 'loading...'}`}</Link></li>
 
-                                    <li>{`Time: ${this.state.article.created_at ? this.state.article.created_at.split('T')[1].split('.')[0] : 'loading....'}`}</li>
-                                    <li>{`Date: ${this.state.article.created_at ? this.state.article.created_at.split('T')[0] : 'loading....'}`}</li>
+                                    <li>{`Time: ${this.state.article.created_at ? this.state.article.created_at.split('').slice(15,this.state.article.created_at.length).join('') : 'loading....'}`}</li>
+                                    <li>{`Date: ${this.state.article.created_at ? this.state.article.created_at.split('').slice(0,15).join('') : 'loading....'}`}</li>
+                                    
 
                                 </ul>
 
