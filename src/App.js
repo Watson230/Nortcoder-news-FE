@@ -8,7 +8,7 @@ import commentsFeed from './components/commentsFeed'
 import UserProfile from './components/userProfile'
 import Users from './components/users'
 import ErrorPage from'./components/404'
-import Feed from './components/allArticles'
+import AllArticles from './components/allArticles'
 import HomeFeed from './components/homeFeed'
 
 import './App.css';
@@ -23,11 +23,10 @@ class App extends Component {
       
     
         <BrowserRouter>
-
           <Switch>
             <Route exact path="/" component={HomeFeed} />
             <Route path="/article/:postId" component={Article} />
-            <Route exact path="/articles" component={Feed} />
+            <Route exact path="/articles" component={AllArticles} />
             <Route path="/articles/:article_id/comments" component={commentsFeed} />
             <Route path="/users/:username" component={UserProfile} />
             <Route path="/article/:article_id" component={Article} />
