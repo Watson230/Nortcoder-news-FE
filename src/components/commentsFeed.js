@@ -10,7 +10,6 @@ class CommentFeed extends Component {
     state = {
         comments: [],
         commentflag: 0,
-        newComment: '',
         articleId: ''
     }
 
@@ -19,32 +18,38 @@ class CommentFeed extends Component {
         let articleId
         if (!this.props.match) articleId = this.props.postId
         else articleId = this.props.match.params.article_id
+       this.fetchComments(articleId).then(comments =>{
+      
+           this.setState({
+               comments:comments,
+               commentflag: 0,
+               articleId:articleId
+           })
+
+       })
        
-        getArticleComments(articleId)
-            .then(body => {
-                console.log(body)
-                this.setState({
-                    comments: body,
-                    commentflag: 0,
-                    articleId: articleId
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
     }
 
+    componentDidUpdate(){
+        let articleId
+        if (!this.props.match) articleId = this.props.postId
+        else articleId = this.props.match.params.article_id
+        this.fetchComments(articleId).then(comments =>{     
+            this.setState({
+                comments:comments,
+                commentflag: this.state.commentflag,
+                articleId:articleId
+            })
+ 
+        })
+        
+    }
 
     fetchComments = (articleId) => {
 
-        getArticleComments(articleId)
+       return  getArticleComments(articleId)
             .then(body => {
-                console.log(body)
-                this.setState({
-                    comments: this.state.comments,
-                    commentflag: this.state.commentflag,
-                    articleId: this.state.articleId
-                })
+               return body
             })
             .catch(err => {
                 console.log(err)
@@ -63,33 +68,21 @@ class CommentFeed extends Component {
     commentVoteHandler = (commentId, vote) => {
 
         let newState
+        let voteInc
 
-        if (vote === 'up') {
+        if (vote === 'up') voteInc =1
+        if (vote === 'down') voteInc =-1
+        
             newState = this.state.comments.map((comment, i) => {
 
                 if (comment._id === commentId) {
-                    comment.votes++
+                    comment.votes= comment.votes + voteInc
                     return comment
                 }
                 else return comment
             })
-
-        }
-
-        if (vote === 'down') {
-            newState = this.state.comments.map((comment, i) => {
-
-                if (comment._id === commentId) {
-                    comment.votes= comment.votes -1
-                    return comment
-                }
-                else return comment
-            })
-
-        }
 
         this.setState({
-
             comments: newState,
             commentflag: 0,
             newComment: '',
@@ -110,7 +103,7 @@ class CommentFeed extends Component {
 
     deleteComment = (commentId) => {
 
-        let newComments = this.state.comments.map((comment, commentId) => {
+        let newComments = this.state.comments.filter((comment, commentId) => {
             if (!comment._id === commentId) return comment
         })
 
@@ -136,9 +129,8 @@ class CommentFeed extends Component {
 
                     <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
                         <button className="button is-medium" onClick={(e) => {
-                            e.preventDefault()
-                            console.log('button press')
-                            this.addCommentButtonHandler(1)
+                            e.preventDefault();                  
+                            this.addCommentButtonHandler(1);
                         }} >Add Comment</button>
                     </div>
 
@@ -148,20 +140,16 @@ class CommentFeed extends Component {
                             return parseInt(b.created_at) - parseInt(a.created_at)
                         }).map(comment => {
                             return (
-
                                 <Comment voteHandler={this.commentVoteHandler} votes={comment.votes} Id={comment._id}
                                     text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}
-                                    addCommentButtonHandler={this.addCommentButtonHandler} deleteComment={this.deleteComment}
-                                />
+                                    deleteComment={this.deleteComment}/>
                             )
                         })
                     }
 
-
                     <div style={{ "margin-top": "20px", "margin-bottom": "20px", "text-align": "right" }}>
                         <button className="button is-medium" onClick={(e) => {
                             e.preventDefault()
-                            console.log('button press')
                             this.addCommentButtonHandler(1)
                         }} >Add Comment</button>
                     </div>
@@ -169,10 +157,9 @@ class CommentFeed extends Component {
                     {
                         this.state.commentflag > 0 ?
                             <div>
-                                <AddCommentModal newComment={this.state.newComment} addCommentButtonHandler={this.addCommentButtonHandler}
-                                    addNewComment={this.addNewComment} articleId={this.state.articleId} addNewComment={this.addNewComment}
-
-                                />
+                                <AddCommentModal addCommentButtonHandler={this.addCommentButtonHandler}
+                                    addNewComment={this.addNewComment} articleId={this.state.articleId} 
+                                    fetchComments={this.fetchComments}/>
 
                             </div> : <div></div>
                     }
