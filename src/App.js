@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom'
-import BlogFeed from './components/blogFeed'
+
 import Article from './components/article'
 import Topics from './components/topicsFeed'
 import NavBar from './components/navbar'
@@ -8,7 +8,7 @@ import commentsFeed from './components/commentsFeed'
 import UserProfile from './components/userProfile'
 import Users from './components/users'
 import ErrorPage from'./components/404'
-import Feed from './components/articleFeed'
+import Feed from './components/allArticles'
 import HomeFeed from './components/homeFeed'
 
 import './App.css';

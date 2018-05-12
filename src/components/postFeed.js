@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import BlogPost from './blogPost'
+import Post from './post'
 import{voteArticle,getFetchRequest} from '../api'
 
 const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
@@ -98,7 +98,7 @@ class BlogFeed extends Component {
                         return b.votes - a.votes
                     }).map((post, i) => {
 
-                        return <div><BlogPost postId={post._id} author={post.created_by}
+                        return <div><Post postId={post._id} author={post.created_by}
                             title={post.title} date={post.created_at} votes={post.votes}
                             comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />
                         </div>

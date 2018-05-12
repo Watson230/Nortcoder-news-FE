@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import BlogPost from './blogPost'
+import Post from './post'
 import NavBar from './navbar'
 import {getUserByID, getUserActivity}from '../api'
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
@@ -35,21 +35,19 @@ class User extends Component {
 
             })
 
-
     }
 
     componentDidMount() {
+        let userName =this.props.match.params.username
+        let endpoint = this.state.endpoint
        
-            getUserActivity(this.props.match.params.username,this.state.endpoint)
+            getUserActivity(userName,endpoint)
             .then(body => {
-
                 this.setState({
-
                     user: this.state.user,
                     userArticles: body,
                     endpoint: this.state.endpoint
                 })
-
             })
             .catch(err => {
                 console.log(err)
@@ -66,7 +64,6 @@ class User extends Component {
 
                 if (endpoint === 'comments') {
                     this.setState({
-
                         user: this.state.user,
                         userArticles: [],
                         userComments: body,
@@ -91,9 +88,6 @@ class User extends Component {
                 console.log(err)
                 this.props.history.push('/404')
             })
-
-
-
 
     }
 
@@ -144,7 +138,7 @@ class User extends Component {
 
                         }).map(post => {
 
-                            return <BlogPost postId={post._id} author={post.created_by}
+                            return <Post postId={post._id} author={post.created_by}
                                 title={post.title} date={post.created_at} votes={post.votes}
                                 comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />
 

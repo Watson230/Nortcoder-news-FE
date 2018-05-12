@@ -6,12 +6,9 @@ const API_URL = `https://damp-everglades-92072.herokuapp.com/api`
 class AddCommentModal extends Component {
 
     state = {
-        newComment: '',
-        articleId: this.props.articleId
-
+        newComment: '',    
     }
-    
-
+   
     commentInputHandler = (event) => {
         this.setState({
             newComment: event.target.value,
@@ -20,9 +17,8 @@ class AddCommentModal extends Component {
     }
 
 
-    addNewComment = () => {
+    addNewComment = (articleId) => {
         let commentPost = { comment: this.state.newComment }
-        let articleId = this.state.articleId
         postComment(articleId,commentPost)
         .catch( err =>{
             console.log(err)
@@ -51,7 +47,6 @@ class AddCommentModal extends Component {
                             </div>
                             <div className="control">
                                 <textarea className="input" className="textarea" placeholder="Textarea" value={`${this.state.newComment}`} onChange={event => {
-                                    console.log(event.target.value)
                                     this.commentInputHandler(event)
                                 }}></textarea>
                             </div>
@@ -61,16 +56,13 @@ class AddCommentModal extends Component {
                     <footer className="modal-card-foot">
                         <button className="button is-success"
                             onClick={() => {
-                                this.addNewComment();
+                                this.addNewComment(this.props.articleId);
                                 this.props.addCommentButtonHandler(0);
-
+                                this.props.fetchComments(this.props.articleId)
                             }}
-
-                        >Submit</button>
-                        <button className="button"
-                            onClick={() => { this.props.addCommentButtonHandler(0) }}
-
-                        >Cancel</button>
+                                
+                                >Submit</button>
+                        <button className="button" onClick={() => { this.props.addCommentButtonHandler(0) }} >Cancel</button>
                     </footer>
 
                 </div>

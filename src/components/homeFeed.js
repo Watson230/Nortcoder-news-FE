@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogFeed from './blogFeed';
+import PostFeed from './postFeed';
 import NavBar from './navbar';
 
 const HomeFeed = () => {
@@ -13,7 +13,7 @@ const HomeFeed = () => {
         </div>
       </div>
       <div className="container">
-        <BlogFeed endPoint={'articles/mostPopular'} />
+        <PostFeed endPoint={'articles/mostPopular'} />
       </div>
     </div>
   );

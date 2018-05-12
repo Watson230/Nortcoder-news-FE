@@ -4,7 +4,7 @@ import {getArticleComments} from '../api'
 
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
 
-class BlogPost extends Component {
+class Post extends Component {
 
 
     state = {
@@ -170,6 +170,6 @@ class BlogPost extends Component {
         
         }
        
-        export default BlogPost
+        export default Post
         
         

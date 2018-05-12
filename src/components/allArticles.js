@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogFeed from './blogFeed';
+import PostFeed from './postFeed';
 import NavBar from './navbar';
 
 
@@ -17,7 +17,7 @@ const Feed = () => {
       </div>
       
       <div className="box">
-        <BlogFeed endPoint={'articles'}/>
+        <PostFeed endPoint={'articles'}/>
       </div>
   
     </div>

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 
-
-
-
 class Comment extends Component {
 
     state = {
@@ -45,7 +42,7 @@ class Comment extends Component {
 
                             }
                             {this.state.votedDown ? <div>
-                                <button style={{ "margin-top": "10px", "margin-bottom": "10px" }} className="button is-danger" disabled > + </button>
+                                <button style={{ "margin-top": "10px", "margin-bottom": "10px" }} className="button is-danger" disabled > - </button>
                             </div> :
                                 <div>
                                     <button onClick={() => {
@@ -69,9 +66,6 @@ class Comment extends Component {
 
                         <ul>
                             <li>{`Made By:${this.props.createdBy}`}</li>
-                            {/* <li>{`Time: ${comment.created_at.split('T')[1].split('.')[0]}`}</li>
-              <li>{`Date: ${comment.created_at.split('T')[0]}`}</li> */}
-
                         </ul>
 
                         <br />
@@ -79,7 +73,7 @@ class Comment extends Component {
 
                             <button className="button is-danger is-rounded is-medium"
                                 onClick={() => {
-                                    console.log('delete comment')
+                                    
                                     this.props.deleteComment(this.props.Id)
 
                                 }}

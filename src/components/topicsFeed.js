@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import BlogFeed from './blogFeed'
-import BlogPost from './blogPost'
+import PostFeed from './postFeed'
 import NavBar from './navbar'
 import {getTopics} from '../api'
 const API_URL= `https://damp-everglades-92072.herokuapp.com/api`
@@ -90,7 +89,7 @@ class TopicFeed extends Component {
                 </div>
 
                 <div className="container">
-                    <BlogFeed endPoint={`topics/${this.state.currentTopic}/articles`}/>
+                    <PostFeed endPoint={`topics/${this.state.currentTopic}/articles`}/>
                 </div>
 
             </div>
