@@ -1,6 +1,6 @@
-import React from 'react';
-import PostFeed from './postFeed';
-import NavBar from './navbar';
+import React from "react";
+import PostFeed from "./postFeed";
+import NavBar from "./navbar";
 
 
 const Feed = () => {
@@ -8,16 +8,16 @@ const Feed = () => {
 
   return (
     <div>
-      <NavBar tab={'articles'}/>
+      <NavBar tab={"articles"}/>
   
       <div className="container">
-        <div className="notification" style={{ 'text-aline': 'center' ,'margin-bottom':'20px'}}>
+        <div className="notification" style={{ "textAline": "center" ,"marginbottom":"20px"}}>
           <p className="title is-3 ">Northcoder News Articles</p>
         </div>
       </div>
       
       <div className="box">
-        <PostFeed endPoint={'articles'}/>
+        <PostFeed endPoint={"articles"}/>
       </div>
   
     </div>

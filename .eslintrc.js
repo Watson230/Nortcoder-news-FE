@@ -2,9 +2,27 @@ module.exports = {
     "env": {
         "es6": true,
         "node": true,
-        "mocha": true
+        "mocha":true
     },
-    "extends": ["eslint:recommended", 'plugin:react/recommended'],
+    "parser": "babel-eslint",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        }
+        
+    },
+    "globals": {
+        "fetch": true,
+        "Headers":true
+        },
+    "plugins": [
+        "react",
+        "fetch"
+    ],
     "rules": {
         "indent": [
             "error",
@@ -16,15 +34,11 @@ module.exports = {
         ],
         "quotes": [
             "error",
-            "single"
+            "double"
         ],
         "semi": [
             "error",
             "always"
         ]
-    },
-    
-    "parserOptions": {
-        "sourceType": "module"
     }
 };

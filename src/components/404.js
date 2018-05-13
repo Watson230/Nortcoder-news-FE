@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link } from 'react-router-dom';
+import React from "react";
+import {Link } from "react-router-dom";
 
 
 const ErrorPage = () => {
@@ -14,7 +14,7 @@ const ErrorPage = () => {
           <div>
           </div>
 
-          <Link to={'/'}><button className="button is-white is-large"> Home</button></Link>
+          <Link to={"/"}><button className="button is-white is-large"> Home</button></Link>
         </div>
       </article>
     </div>
