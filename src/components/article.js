@@ -37,18 +37,16 @@ class Article extends Component {
         <div>
           <NavBar tab={"articles"} />
 
-          <div className="box" >
+          <div className= "container">
             <div className="card" style={{ "marginTop": "10px" }}>
               <header className="card-header">
-                <div style={{ "marginBottom": "10px" ,"marginTop": "10px","marginLeft": "10px" }}>
+                <div style={{ "marginBottom": "5px" ,"marginTop": "10px","marginLeft": "10px" }}>
                  
-                  <p className="card-header-title title is-2"  >
-                    {this.state.article.title}
-                  </p>
+                  <h1 className="card-header-title title is-2"  >
+                    {`Title: ${this.state.article.title}`}
+                  </h1>
+                  <h2 className="subtitle is-3"><Link to={"/topics"}>{` # ${this.state.article.belongs_to}`}</Link></h2>
                   
-                  <div>
-                    <h2 className="subtitle is-3"><Link to={"/topics"}>{`# ${this.state.article.belongs_to}`}</Link></h2>
-                  </div>
                 </div>
               </header>
               <div className="card-content">
@@ -77,7 +75,7 @@ class Article extends Component {
             </div>
           </div>
 
-          <div className="box">
+          <div className="container">
             <CommentsFeed postId={this.props.match.params.postId} />
           </div>
 

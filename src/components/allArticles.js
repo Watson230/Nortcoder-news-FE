@@ -16,7 +16,7 @@ const Feed = () => {
         </div>
       </div>
       
-      <div className="box">
+      <div className="container">
         <PostFeed endPoint={"articles"}/>
       </div>
   
