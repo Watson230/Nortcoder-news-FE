@@ -133,7 +133,7 @@ class User extends Component {
         <div>
           <NavBar tab={"users"} />
 
-          <div className="userInfo" style={{ "marginLeft": "40px" }}>
+          <div className="container" style={{ "marginLeft": "40px" }}>
             <h1 className="title is-2" >User Profile</h1>
             {
               <ul>
@@ -166,16 +166,21 @@ class User extends Component {
               this.state.userArticles.sort((a, b) => {
                 return b.votes - a.votes;
               }).map((post,i) => {
-
-                return <Post key={i} postId={post._id} author={post.created_by}
+                  
+                return 
+                <div className="container">
+                <Post key={i} postId={post._id} author={post.created_by}
                   title={post.title} date={post.created_at} votes={post.votes}
                   comments={post.comments} vote={this.userArticleVote} slug={post.belongs_to} />;
+                  </div>
               })
               :
               this.state.userComments.map((comment,i) => {
                 return (
+                  <div className="container">
                   <Comment key={i} voteHandler={this.userCommentVote} votes={comment.votes} Id={comment._id}
                     text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at} userComments={true} articleId={comment.belongs_to}/>
+                    </div>
                 );
               })
             }
