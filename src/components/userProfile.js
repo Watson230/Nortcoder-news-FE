@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import Comment from "./comment";
 import Post from "./post";
 import NavBar from "./navbar";
-import {getUserByID, getUserActivity}from "../api";
+import {getUserByID, getUserActivity, voteArticle, voteComment}from "../api";
 import propTypes from "prop-types";
 
 
@@ -33,7 +33,6 @@ class User extends Component {
         .catch(() => {
           this.props.history.push("/404");
         });
-
     }
 
     componentDidMount() {
@@ -84,6 +83,49 @@ class User extends Component {
         });
     }
 
+    userArticleVote = (postId, vote) => {
+      let newState;
+      let voteInc;    
+      if (vote === "up") voteInc=1;
+      if (vote === "down") voteInc=-1;   
+        
+      newState = this.state.userArticles.map((article) => {
+               
+        if (article._id === postId) {               
+          article.votes = article.votes + voteInc;                             
+        }
+        return article;
+      });
+      
+      this.setState({
+        userArticles: newState
+      }, () => voteArticle(postId,vote)); 
+    }
+
+    userCommentVote = (commentId, vote) => {
+
+      let newState;
+      let voteInc;
+
+      if (vote === "up") voteInc =1;
+      if (vote === "down") voteInc =-1;
+        
+      newState = this.state.userComments.map((comment) => {
+         
+        if (comment._id === commentId) {
+          comment.votes = comment.votes + voteInc;
+        }
+        return comment;
+       
+      });
+      this.setState({
+        comments: newState,
+        commentflag: 0,
+        newComment: "",
+        articleId: this.state.articleId
+      }, ()=>voteComment(commentId, vote));
+    }
+
 
     render() {
 
@@ -132,7 +174,7 @@ class User extends Component {
 
                 return <Post key={i} postId={post._id} author={post.created_by}
                   title={post.title} date={post.created_at} votes={post.votes}
-                  comments={post.comments} vote={this.articleVote} slug={post.belongs_to} />;
+                  comments={post.comments} vote={this.userArticleVote} slug={post.belongs_to} />;
 
               })
 
@@ -140,33 +182,11 @@ class User extends Component {
 
               this.state.userComments.map((comment,i) => {
                 return (
-                  <div className="box" key={i}>
-                    <div className="card" >
-                      <header className="card-header">
-                        <p className="card-header-title">Comment</p>
-                      </header>
-                      <div className="card-content">
-                        <div className="content">
-
-                          <p>{comment.body}</p>
-                          <ul>
-                            <li>{comment.created_by}</li>
-                            <li>{comment.created_at}</li>
-                          </ul>
-                        </div>
-                      </div>                                   
-                      <nav className="level">
-
-                        <div className="level-item has-text-centered">
-                          <div>
-                            <Link to={`/article/${comment.belongs_to}`}><button className="is-button">See Article</button></Link>
-                          </div>
-                        </div>
-
-                      </nav>                                
-                    </div>
-                  </div>
-                );
+                  <Comment key={i} voteHandler={this.userCommentVote} votes={comment.votes} Id={comment._id}
+                  text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}/>
+                )
+   
+                
 
               })
             }
