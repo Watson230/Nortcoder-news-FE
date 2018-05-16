@@ -13,15 +13,12 @@ class Users extends Component {
     componentWillMount() {
       getUsers()
         .then(body => {
-      
           this.setState({
             users: body
           });
         })
         .catch(() => {
-          
           this.props.history.push("/404");
-
         });
     }
 
@@ -30,17 +27,14 @@ class Users extends Component {
       return (
         <div>
           <NavBar tab={"users"}/>
-
           <div className="container" style={{ "marginBottom": "20px" }}>
             <div className="notification" style={{ "textAline": "center" }}>
               <p className="title is-3 ">Northcoder News Users</p>
             </div>
           </div>
           <div className="box" style={{"margins":"0 auto"}}>
-
             <div className="columns"  >
               {this.state.users.map((user,i) => {
-
                 return (
                   <div className="column" key={i}>
                     <ul>
@@ -49,15 +43,11 @@ class Users extends Component {
                     </ul>
                   </div>
                 );
-
               })}
             </div>
           </div>
-
         </div>
       );
-
-
     }
 }
 

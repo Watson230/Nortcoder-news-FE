@@ -33,24 +33,19 @@ class Post extends Component {
             <div className="card-content" style={{ "display": "inlineBlock", "width": "100%" }}  >
 
               <div>
-                <p className="title">
-                  <Link to={`/article/${this.props.postId}`}> {this.props.title}</Link>
-                </p>
+                <p className="title"><Link to={`/article/${this.props.postId}`}> {this.props.title}</Link></p>
               </div>
-              <div className="columns">
 
+              <div className="columns">
                 <div className="column is-four-fifths" style={{ "marginTop": "10px"}}>
                   <ul>
                     <li>{`Created_By: ${this.props.author}`}</li>
                     <li>{`Time: ${this.props.date.split(" ").slice(4, this.props.date.split(" ").length).join(" ")}`}</li>
                     <li>{`Date: ${this.props.date.split(" ").slice(0, 3).join(" ")}`}</li>
                     <li>{`Topic: ${this.props.slug}`}</li>
-
-
                   </ul>
                 </div>
-
-                                
+             
                 <div className="column" style={{"marginLeft":"20px","textAlign":"center"}}>
                   {this.state.votedUp ?
 
@@ -61,7 +56,6 @@ class Post extends Component {
                       <button onClick={() => {
                         this.props.vote(this.props.postId, "up");
                         this.setState({
-                          
                           comments: this.state.comments,
                           votedDown: false,
                           votedUp: true
@@ -81,8 +75,7 @@ class Post extends Component {
                     <div style={{ "marginTop": "10px" }}>
                       <button onClick={() => {
                         this.props.vote(this.props.postId, "down");
-                        this.setState({
-                          
+                        this.setState({               
                           comments: this.state.comments,
                           votedDown: true,
                           votedUp: false
@@ -90,10 +83,8 @@ class Post extends Component {
                       }} className="button is-danger is-rounded"> - </button>
                     </div>
                   }
-
                 </div>
               </div>
-
 
               <div style={{ "marginBottom": "10px" }}>
                 <nav className="level">
@@ -105,9 +96,7 @@ class Post extends Component {
                         <p className="title">{this.props.votes}</p>
                       </div>
                     </div>
-
                   </div>
-
 
                   <div className="level-item has-text-centered">
                     <div>

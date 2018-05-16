@@ -52,10 +52,8 @@ const getArticleComments = (articleId) => {
     .then(res => {    
       if (res.status === 404) return Promise.reject(new Error("Article not found"));
       return res.json();
-    })
-    .catch(()=>{
-
     });
+
 };
 
 const postComment = (articleId, comment) => {

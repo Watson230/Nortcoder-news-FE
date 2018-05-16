@@ -22,18 +22,14 @@ class TopicFeed extends Component {
     componentDidMount() {
       getTopics()
         .then(body => {
-
           this.setState({
-
             topics: body,
             currentTopic: body[0].slug,
             loaded: true
-
           });
         })
         .catch(() => {
           this.props.history.push("/404");
-
         });
     }
 
@@ -83,8 +79,7 @@ class TopicFeed extends Component {
                 return <li className={this.state[topic.slug]} key={i}
                   onClick={() => {
                     this.tabChangerHandeler(topic.slug);
-                  }}
-                ><a>{topic.title}</a></li>;
+                  }}><a>{topic.title}</a></li>;
               })}
             </ul>
           </div>

@@ -151,15 +151,12 @@ class User extends Component {
                 <li className={this.state.articlesTab}><a
                   onClick={() => {
                     this.endpointChangeHandler("articles");
-                  }}
+                  }}>Articles</a></li>
 
-                >Articles</a></li>
                 <li className={this.state.commentsTab}><a
                   onClick={() => {
                     this.endpointChangeHandler("comments");
-
-                  }}
-                >Comments</a></li>
+                  }}>Comments</a></li>
               </ul>
 
             </div>
@@ -167,27 +164,19 @@ class User extends Component {
             {this.state.userArticles.length > 0 ?
 
               this.state.userArticles.sort((a, b) => {
-
                 return b.votes - a.votes;
-
               }).map((post,i) => {
 
                 return <Post key={i} postId={post._id} author={post.created_by}
                   title={post.title} date={post.created_at} votes={post.votes}
                   comments={post.comments} vote={this.userArticleVote} slug={post.belongs_to} />;
-
               })
-
               :
-
               this.state.userComments.map((comment,i) => {
                 return (
                   <Comment key={i} voteHandler={this.userCommentVote} votes={comment.votes} Id={comment._id}
-                    text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}/>
+                    text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at} userComments={true} articleId={comment.belongs_to}/>
                 );
-   
-                
-
               })
             }
           </div>

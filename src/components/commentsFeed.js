@@ -25,13 +25,10 @@ class CommentFeed extends Component {
           commentflag: 0,
           articleId:articleId
         });
-
-      });
-
-       
+      });     
     }
 
-    componentWillUpdate(){
+    componentDidUpdate(){
   
       let articleId;
       if (!this.props.match) articleId = this.props.postId;
@@ -76,16 +73,13 @@ class CommentFeed extends Component {
       let voteInc;
 
       if (vote === "up") voteInc =1;
-      if (vote === "down") voteInc =-1;
-        
+      if (vote === "down") voteInc =-1; 
       newState = this.state.comments.map((comment) => {
          
         if (comment._id === commentId) {
           comment.votes = comment.votes + voteInc;
         }
-        return comment;
-       
-      });
+        return comment;});
 
       this.setState({
         comments: newState,
@@ -96,7 +90,6 @@ class CommentFeed extends Component {
     }
 
     deleteComment = (commentId) => {
-
       let newComments = this.state.comments.filter((comment, commentId) => {
         if (comment._id !== commentId) return comment;
         return null;
@@ -110,7 +103,6 @@ class CommentFeed extends Component {
             articleId: this.state.articleId
           });
         });
-   
     }
 
     render() {
@@ -132,7 +124,7 @@ class CommentFeed extends Component {
                 return (
                   <Comment key={i} voteHandler={this.commentVoteHandler} votes={comment.votes} Id={comment._id}
                     text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}
-                    deleteComment={this.deleteComment}/>
+                    deleteComment={this.deleteComment} userComments={false}/>
                 );
               })
             }
@@ -150,12 +142,9 @@ class CommentFeed extends Component {
                   <AddCommentModal addCommentButtonHandler={this.addCommentButtonHandler}
                     addNewComment={this.addNewComment} articleId={this.state.articleId} 
                     fetchComments={this.fetchComments}/>
-
                 </div> : null
             }
-
           </div>
-
         </div>
       );
     }
