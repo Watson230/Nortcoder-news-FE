@@ -98,7 +98,8 @@ class CommentFeed extends Component {
     deleteComment = (commentId) => {
 
       let newComments = this.state.comments.filter((comment, commentId) => {
-        if (!comment._id === commentId) return comment;
+        if (comment._id !== commentId) return comment;
+        return null;
       });
 
       deleteComment(commentId)
@@ -126,7 +127,7 @@ class CommentFeed extends Component {
 
             {
               this.state.comments.sort((a, b) => {
-                return parseInt(b.created_at) - parseInt(a.created_at);
+                return parseInt(b.created_at,10) - parseInt(a.created_at,10);
               }).map((comment,i) => {
                 return (
                   <Comment key={i} voteHandler={this.commentVoteHandler} votes={comment.votes} Id={comment._id}

@@ -183,8 +183,8 @@ class User extends Component {
               this.state.userComments.map((comment,i) => {
                 return (
                   <Comment key={i} voteHandler={this.userCommentVote} votes={comment.votes} Id={comment._id}
-                  text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}/>
-                )
+                    text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at}/>
+                );
    
                 
 

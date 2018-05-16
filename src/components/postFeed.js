@@ -34,45 +34,45 @@ class PostFeed extends Component {
         });
     }
 
-    articleVote = (postId, vote) => {
-      let newState;
-      let voteInc;    
-      if (vote === "up") voteInc=1;
-      if (vote === "down") voteInc=-1;   
+     articleVote = (postId, vote) => {
+       let newState;
+       let voteInc;    
+       if (vote === "up") voteInc=1;
+       if (vote === "down") voteInc=-1;   
         
-      newState = this.state.blogPosts.map((article) => {
+       newState = this.state.blogPosts.map((article) => {
                
-        if (article._id === postId) {               
-          article.votes = article.votes + voteInc;                             
-        }
-        return article;
-      });
+         if (article._id === postId) {               
+           article.votes = article.votes + voteInc;                             
+         }
+         return article;
+       });
       
-      this.setState({
-        blogPosts: newState
-      }, () => voteArticle(postId,vote)); 
-    }
+       this.setState({
+         blogPosts: newState
+       }, () => voteArticle(postId,vote)); 
+     }
 
-    render() {
-      return (
-        <div >
-          <div className="box" style={{ "width": "100%" }}>
+     render() {
+       return (
+         <div >
+           <div className="box" style={{ "width": "100%" }}>
 
-            {this.state.blogPosts.length > 0?
-              this.state.blogPosts.sort((a, b) => {
-                return b.votes - a.votes;
-              }).map((post,i) => {
+             {this.state.blogPosts.length > 0?
+               this.state.blogPosts.sort((a, b) => {
+                 return b.votes - a.votes;
+               }).map((post,i) => {
 
-                return <Post key={i} postId={post._id} author={post.created_by}
-                  title={post.title} date={post.created_at} votes={post.votes}
-                  vote={this.articleVote} slug={post.belongs_to} history={this.props.history}/>
-                ;
+                 return <Post key={i} postId={post._id} author={post.created_by}
+                   title={post.title} date={post.created_at} votes={post.votes}
+                   vote={this.articleVote} slug={post.belongs_to} history={this.props.history}/>
+                 ;
 
-              }):null}
-          </div>
-        </div>
-      );
-    }
+               }):null}
+           </div>
+         </div>
+       );
+     }
 
 }
 
