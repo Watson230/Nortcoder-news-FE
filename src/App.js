@@ -12,10 +12,10 @@ import HomePage from "./components/homePage";
 import "./App.css";
 
 class App extends Component {
-
   state = {
     pageNum: 0
   }
+
   render() {
     return (
       <BrowserRouter>
@@ -25,7 +25,6 @@ class App extends Component {
           <Route exact path="/articles" component={AllArticles} />
           <Route path="/articles/:article_id/comments" component={commentsFeed} />
           <Route path="/users/:username" component={UserProfile} />
-          <Route path="/article/:article_id" component={Article} />
           <Route path="/users" component={Users} />
           <Route path="/topics" component={ArticlesByTopic} />
           <Route path="/404" component={ErrorPage} />
