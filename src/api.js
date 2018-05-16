@@ -49,8 +49,7 @@ const getArticleByID = (articleId) => {
 
 const getArticleComments = (articleId) => {
   return fetch(`${API_URL}/articles/${articleId}/comments`)
-    .then(res => {
-      
+    .then(res => {    
       if (res.status === 404) return Promise.reject(new Error("Article not found"));
       return res.json();
     })
