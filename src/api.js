@@ -123,6 +123,7 @@ const voteComment = (commentId, vote) => {
     method: "PUT"
   })
     .then(res => {
+      if (res.status === 404) return Promise.reject(new Error("Article not found"));
       return res.json();
     });
 };
@@ -133,6 +134,7 @@ const deleteComment = (commentId) => {
     method: "DELETE"
   })
     .then(res => {
+      if (res.status === 404) return Promise.reject(new Error("comment not found"));
       return res.json();
     })
     .catch(() =>{
