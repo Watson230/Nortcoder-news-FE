@@ -12,6 +12,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ##Prerequisites
 
+    Node.js - v9.2.0
+    ECMAScript 6
+
+## Dependencies
+
     "bulma": "^0.7.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
@@ -28,6 +33,10 @@ Clone this repository ( https://github.com/Watson230/FE-PT-northcoders-news)
 Install dependencies ( npm i )
 
 run "npm start" in the terminal
+
+## Deployed
+
+Link: https://fe-northcoders-news.herokuapp.com 
 
 ##Built With
 Bulma - The css framework used
