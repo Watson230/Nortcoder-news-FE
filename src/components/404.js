@@ -4,8 +4,7 @@ import {Link } from "react-router-dom";
 
 const ErrorPage = () => {
 
-  return (
-        
+  return (     
     <div className="tile is-parent">
       <article className="tile is-child notification is-danger">
         <p className="title">404....</p>
@@ -13,14 +12,10 @@ const ErrorPage = () => {
         <div className="content">
           <div>
           </div>
-
           <Link to={"/"}><button className="button is-white is-large"> Home</button></Link>
         </div>
       </article>
-    </div>
-        
-
-       
+    </div>     
   );
 
 };

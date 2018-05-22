@@ -14,7 +14,7 @@ class CommentFeed extends Component {
     }
 
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       let articleId;
       if (!this.props.match) articleId = this.props.postId;
       else articleId = this.props.match.params.article_id;
@@ -50,11 +50,9 @@ class CommentFeed extends Component {
       return  getArticleComments(articleId)
         .then(body => {
           return body;
-        })
-        .catch(() => {
-         
         });
     }
+   
 
     
 

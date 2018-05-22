@@ -56,9 +56,8 @@ class AddCommentModal extends Component {
                   this.addNewComment(this.props.articleId);
                   this.props.addCommentButtonHandler(0);
                   this.props.fetchComments(this.props.articleId);
-                }}
-                                
-              >Submit</button>
+                }}>Submit</button>
+                
               <button className="button" onClick={() => { this.props.addCommentButtonHandler(0); }} >Cancel</button>
             </footer>
 

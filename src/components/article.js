@@ -12,26 +12,19 @@ class Article extends Component {
       article: {},
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       getArticleByID(this.props.match.params.postId)
-        .then(body => {
-          this.setState({
-            article: body[0]
-          });
+        .then(body => {this.setState({article: body[0]});
         })
-        .catch(() => {
-          this.props.history.push("/404");
+        .catch(() => {this.props.history.push("/404");
         });
     }
-
-
-
     render() {
       return (
         <div>
           <NavBar tab={"articles"}/>
           <div className= "container">
-            <div className="card" style={{ "marginTop": "10px" }}>
+            <div className="card" style={{"marginTop": "10px"}}>
               <header className="card-header">
                 <div style={{ "marginBottom": "5px" ,"marginTop": "10px","marginLeft": "10px" }}>
                   <h1 className="card-header-title title is-2">{`Title: ${this.state.article.title}`}</h1>
@@ -54,7 +47,7 @@ class Article extends Component {
               <footer className="card-footer"><Link to={`/users/${this.state.article.created_by}`} className="card-footer-item">{`${this.state.article.created_by}'s profile`}</Link> </footer>
             </div>
           </div>
-         <div className="container">
+          <div className="container">
             <CommentsFeed postId={this.props.match.params.postId} />
           </div>
         </div>

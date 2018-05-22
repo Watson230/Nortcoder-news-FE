@@ -11,7 +11,7 @@ class Post extends Component {
       votedUp: false
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       getArticleComments(this.props.postId)
         .then(body => {
           this.setState({
@@ -28,14 +28,11 @@ class Post extends Component {
 
       return (
         <div className="box" style ={{"marginBottom":"20px"}}>
-
           <div className="card">
-            <div className="card-content" style={{ "display": "inlineBlock", "width": "100%" }}  >
-
+            <div className="card-content" style={{ "display": "inlineBlock", "width": "100%" }}>
               <div>
                 <p className="title"><Link to={`/article/${this.props.postId}`}> {this.props.title}</Link></p>
               </div>
-
               <div className="columns">
                 <div className="column is-four-fifths" style={{ "marginTop": "10px"}}>
                   <ul>
@@ -48,10 +45,10 @@ class Post extends Component {
              
                 <div className="column" style={{"marginLeft":"20px","textAlign":"center"}}>
                   {this.state.votedUp ?
-
                     <div style={{ "marginTop": "10px", "marginBottom": "10px" }}>
                       <button className="button is-success is-rounded" disabled> + </button>
-                    </div> :
+                    </div> 
+                    :
                     <div style={{ "marginBottom": "10px", "marginTop": "10px" }}>
                       <button onClick={() => {
                         this.props.vote(this.props.postId, "up");
@@ -68,10 +65,10 @@ class Post extends Component {
                   </div>
 
                   {this.state.votedDown ?
-
                     <div style={{ "marginTop": "10px" }}>
                       <button className="button is-danger is-rounded" disabled> - </button>
-                    </div> :
+                    </div> 
+                    :
                     <div style={{ "marginTop": "10px" }}>
                       <button onClick={() => {
                         this.props.vote(this.props.postId, "down");
@@ -90,7 +87,6 @@ class Post extends Component {
                 <nav className="level">
                   <div className="level-item has-text-centered">
                     <div style={{ "display": "inlineBlock" }}>
-
                       <div style={{ "float": "right" }}>
                         <p className="heading">Votes</p>
                         <p className="title">{this.props.votes}</p>
@@ -117,7 +113,6 @@ class Post extends Component {
                 </nav>
               </div>
             </div>
-
           </div>
         </div>
       );

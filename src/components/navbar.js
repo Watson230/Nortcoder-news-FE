@@ -20,12 +20,8 @@ class Navbar extends Component {
           <Link to={"/"}><section className="hero is-danger">
             <div className="hero-body">
               <div className="container">
-                <h1 className="title">
-                                NorthCoder News
-                </h1>
-                <h2 className="subtitle">
-                                News for Northcoders in the North
-                </h2>
+                <h1 className="title">NorthCoder News</h1>
+                <h2 className="subtitle"> News for Northcoders in the North</h2>
               </div>
             </div>
           </section></Link>

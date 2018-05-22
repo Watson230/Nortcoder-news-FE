@@ -22,7 +22,7 @@ class PostFeed extends Component {
         });
     }
 
-    componentWillReceiveProps(nextprops) {
+    UNSAFE_componentWillReceiveProps(nextprops) {
       getFetchRequest(`${nextprops.endPoint}`)
         .then(body => {
           if (body.count === 0) {
@@ -57,23 +57,18 @@ class PostFeed extends Component {
        return (
          <div >
            <div className="box" style={{ "width": "100%" }}>
-
              {this.state.blogPosts.length > 0?
                this.state.blogPosts.sort((a, b) => {
                  return b.votes - a.votes;
                }).map((post,i) => {
-
                  return <Post key={i} postId={post._id} author={post.created_by}
                    title={post.title} date={post.created_at} votes={post.votes}
-                   vote={this.articleVote} slug={post.belongs_to} history={this.props.history}/>
-                 ;
-
+                   vote={this.articleVote} slug={post.belongs_to} history={this.props.history}/>;
                }):null}
            </div>
          </div>
        );
      }
-
 }
 
 PostFeed.propTypes = {

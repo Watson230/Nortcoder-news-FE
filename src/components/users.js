@@ -10,12 +10,9 @@ class Users extends Component {
       users: []
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       getUsers()
-        .then(body => {
-          this.setState({
-            users: body
-          });
+        .then(body => {this.setState({users: body});
         })
         .catch(() => {
           this.props.history.push("/404");

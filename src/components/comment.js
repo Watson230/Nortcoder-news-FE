@@ -71,8 +71,8 @@ class Comment extends Component {
                     onClick={() => {                                   
                       this.props.deleteComment(this.props.Id);
                     }}>Delete</button>
-                </div> : 
-                  <div></div>}
+                </div> 
+                  :null}
               </div>
             </div> 
             <footer className="card-footer"><NavLink className="card-footer-item" to={`/article/${this.props.articleId}`}>See article</NavLink> </footer>
@@ -130,9 +130,7 @@ class Comment extends Component {
                 {this.props.createdBy === "northcoder" ?
                   <div>
                     <button className="button is-danger is-rounded is-medium"
-                      onClick={() => {                                   
-                        this.props.deleteComment(this.props.Id);
-                      }}>Delete</button>
+                      onClick={() => {this.props.deleteComment(this.props.Id);}}>Delete</button>
                   </div>
                   : 
                   null

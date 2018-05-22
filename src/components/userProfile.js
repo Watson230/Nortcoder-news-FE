@@ -17,17 +17,15 @@ class User extends Component {
     }
 
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
 
       getUserByID(this.props.match.params.username)
         .then(body => {
 
           this.setState({
-
             user: body[0],
             userArticles: [],
             endpoint: "articles"
-
           });
         })
         .catch(() => {
@@ -38,7 +36,6 @@ class User extends Component {
     componentDidMount() {
       let userName =this.props.match.params.username;
       let endpoint = this.state.endpoint;
-       
       getUserActivity(userName,endpoint)
         .then(body => {
           this.setState({
@@ -149,14 +146,8 @@ class User extends Component {
             <div className="tabs is-centered">
               <ul>
                 <li className={this.state.articlesTab}><a
-                  onClick={() => {
-                    this.endpointChangeHandler("articles");
-                  }}>Articles</a></li>
-
-                <li className={this.state.commentsTab}><a
-                  onClick={() => {
-                    this.endpointChangeHandler("comments");
-                  }}>Comments</a></li>
+                  onClick={() => {this.endpointChangeHandler("articles");}}>Articles</a></li>
+                <li className={this.state.commentsTab}><a onClick={() => {this.endpointChangeHandler("comments");}}>Comments</a></li>
               </ul>
 
             </div>
@@ -165,22 +156,22 @@ class User extends Component {
 
               this.state.userArticles.sort((a, b) => {
                 return b.votes - a.votes;
-              }).map((post,i) => {
-                  
+              }).map((post,i) => {            
                 return (
-                <div className="container">
-                <Post key={i} postId={post._id} author={post.created_by}
-                  title={post.title} date={post.created_at} votes={post.votes}
-                  comments={post.comments} vote={this.userArticleVote} slug={post.belongs_to} />;
-                  </div>)
+                  <div className="container" key={i} >
+                    <Post postId={post._id} author={post.created_by}
+                      title={post.title} date={post.created_at} votes={post.votes}
+                      comments={post.comments} vote={this.userArticleVote} slug={post.belongs_to}/>;
+                  </div>
+                );
               })
               :
               this.state.userComments.map((comment,i) => {
                 return (
-                  <div className="container">
-                  <Comment key={i} voteHandler={this.userCommentVote} votes={comment.votes} Id={comment._id}
-                    text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at} userComments={true} articleId={comment.belongs_to}/>
-                    </div>
+                  <div className="container" key={i}>
+                    <Comment voteHandler={this.userCommentVote} votes={comment.votes} Id={comment._id}
+                      text={comment.body} createdBy={comment.created_by} createdAt={comment.created_at} userComments={true} articleId={comment.belongs_to}/>
+                  </div>
                 );
               })
             }

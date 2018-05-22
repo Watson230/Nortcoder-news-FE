@@ -28,8 +28,7 @@ class TopicFeed extends Component {
             loaded: true
           });
         })
-        .catch(() => {
-          this.props.history.push("/404");
+        .catch(() => {this.props.history.push("/404");
         });
     }
 
@@ -60,9 +59,7 @@ class TopicFeed extends Component {
 
 
     render() {
-
       if (!this.state.loaded) return null;
-
       return (
         <div>
           <NavBar tab={"topics"} />
@@ -71,15 +68,11 @@ class TopicFeed extends Component {
               <p className="title is-3 ">Northcoder News Topics</p>
             </div>
           </div>
-
           <div className="tabs is-centered">
             <ul>
               {this.state.topics.map((topic,i) => {
-
                 return <li className={this.state[topic.slug]} key={i}
-                  onClick={() => {
-                    this.tabChangerHandeler(topic.slug);
-                  }}><a>{topic.title}</a></li>;
+                  onClick={() => {this.tabChangerHandeler(topic.slug);}}><a>{topic.title}</a></li>;
               })}
             </ul>
           </div>
@@ -87,7 +80,6 @@ class TopicFeed extends Component {
           <div className="container">
             <PostFeed endPoint={`topics/${this.state.currentTopic}/articles`}/>
           </div>
-
         </div>
       );
     }
